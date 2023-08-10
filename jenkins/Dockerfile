@@ -1,4 +1,11 @@
 FROM jenkins/jenkins:2.418-jdk11
+
+LABEL \
+    org.opencontainers.image.url='https://github.com/czy21/container' \
+    org.opencontainers.image.source='https://github.com/czy21/container/tree/main/jenkins' \
+    org.opencontainers.image.title='base on jenkins/jenkins:2.418-jdk11' \
+    org.opencontainers.image.authors='a805899926@gmail.com>'
+
 USER root
 RUN apt update && apt install sudo -y
 RUN curl -L "https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
