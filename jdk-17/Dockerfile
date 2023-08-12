@@ -1,4 +1,4 @@
-FROM openjdk:17.0.2-jdk-slim-bullseye
+FROM eclipse-temurin:17-jdk-alpine
 
 LABEL org.opencontainers.image.url='https://github.com/czy21/container'
 LABEL org.opencontainers.image.source='https://github.com/czy21/container/tree/main/jdk17'
