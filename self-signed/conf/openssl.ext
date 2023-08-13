@@ -1,9 +1,0 @@
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-extendedKeyUsage = serverAuth, clientAuth
-subjectAltName=@alt_names
-
-[ alt_names ]
-DNS.1=czy21-internal.com
-DNS.2=*.czy21-internal.com
-IP.1=192.168.2.10
-IP.2=192.168.2.20
