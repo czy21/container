@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  ubuntu-lede:
+    image: docker.io/czy21/ubuntu-lede
+    pull_policy: always
+    container_name: ubuntu-lede
+    hostname: ubuntu-lede
+    user: opsor
+    tty: true
+    volumes:
+      - /volume5/storage/docker-data/ubuntu-lede/data/:/data/
+    restart: always
