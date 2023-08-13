@@ -1,4 +1,4 @@
-FROM registry.czy21-internal.com/library/hadoop-base
+FROM docker.io/czy21/hadoop-base
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
