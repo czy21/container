@@ -25,8 +25,9 @@ services:
     restart: always
 
   mysql-exporter-3306:
-    image: prom/mysqld-exporter
+    image: prom/mysqld-exporter:v0.15.0
     container_name: mysql-exporter-3306
+    command: --mysqld.address=mysql:3306 --mysqld.username=<username>
     environment:
-      DATA_SOURCE_NAME: "<username>:<password>@(mysql:3306)/"
+      MYSQLD_EXPORTER_PASSWORD: <password>
     restart: always
