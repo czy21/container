@@ -9,9 +9,3 @@ http:
     cadvisor:
       rule: Host(`cadvisor-.czy21-internal.com`)
       service: cadvisor@docker
-    nginx-exporter:
-      rule: Host(`nginx-exporter-.czy21-internal.com`)
-      service: nginx-exporter@docker
-    fluent-bit-log-metrics:
-      rule: Host(`fluent-bit--log-metrics.czy21-internal.com`)
-      service: fluent-bit-log-metrics@docker
