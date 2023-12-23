@@ -1,7 +1,7 @@
 version: "3.9"
 
 x-app-common: &app-common
-  image: elasticsearch:7.17.10
+  image: elasticsearch:8.11.3
 
 x-traefik-es-label: &traefik-es-label
   traefik.enable: true
@@ -125,7 +125,7 @@ services:
       timeout: 10s
       retries: 120
   es-1-kb:
-    image: kibana:7.17.10
+    image: kibana:8.11.3
     container_name: es-1-kb
     labels:
       <<: *traefik-kb-label
