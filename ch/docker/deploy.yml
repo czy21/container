@@ -1,7 +1,7 @@
 version: "3.9"
 
 x-app-common: &app-common
-  image: clickhouse/clickhouse-server:22.8
+  image: clickhouse/clickhouse-server:23.12.1
 
 services:
   ch-1-1:

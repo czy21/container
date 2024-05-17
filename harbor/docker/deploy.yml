@@ -24,7 +24,7 @@ x-traefik-core-label: &traefik-core-label
 
 services:
   log:
-    image: goharbor/harbor-log:v2.5.3
+    image: goharbor/harbor-log:v2.10.0
     container_name: harbor-log
     <<: *common
     volumes:
@@ -34,7 +34,7 @@ services:
     ports:
       - "127.0.0.1:1514:10514"
   registry:
-    image: goharbor/registry-photon:v2.5.3
+    image: goharbor/registry-photon:v2.10.0
     container_name: registry
     <<: *common
     expose:
@@ -52,7 +52,7 @@ services:
         syslog-address: "tcp://localhost:1514"
         tag: "registry"
   registryctl:
-    image: goharbor/harbor-registryctl:v2.5.3
+    image: goharbor/harbor-registryctl:v2.10.0
     container_name: registryctl
     <<: *common
     env_file:
@@ -70,7 +70,7 @@ services:
         syslog-address: "tcp://localhost:1514"
         tag: "registryctl"
   core:
-    image: goharbor/harbor-core:v2.5.3
+    image: goharbor/harbor-core:v2.10.0
     container_name: harbor-core
     <<: *common
     labels:
@@ -96,7 +96,7 @@ services:
         syslog-address: "tcp://localhost:1514"
         tag: "core"
   portal:
-    image: goharbor/harbor-portal:v2.5.3
+    image: goharbor/harbor-portal:v2.10.0
     container_name: harbor-portal
     <<: *common
     labels:
@@ -114,7 +114,7 @@ services:
         tag: "portal"
 
   jobservice:
-    image: goharbor/harbor-jobservice:v2.5.3
+    image: goharbor/harbor-jobservice:v2.10.0
     container_name: harbor-jobservice
     <<: *common
     env_file:
