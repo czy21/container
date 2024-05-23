@@ -1,0 +1,28 @@
+ingress-nginx:
+  commonLabels:
+    sidecar.istio.io/inject: "false"
+  controller:
+    config:
+      use-forwarded-headers: true
+    nodeSelector:
+      kubernetes.io/hostname: node-31
+    allowSnippetAnnotations: true
+    image:
+      registry: 'registry-proxy.czy21-internal.com' # registry.k8s.io
+    ingressClassResource:
+      default: true
+    hostNetwork: true
+    service:
+      type: NodePort
+      nodePorts:
+        http: 80
+        https: 443
+    podAnnotations:
+      prometheus.io/port: "10254"
+      prometheus.io/scrape: "true"
+    metrics:
+      enabled: true
+    admissionWebhooks:
+      patch:
+        image:
+          registry: 'registry-proxy.czy21-internal.com'
