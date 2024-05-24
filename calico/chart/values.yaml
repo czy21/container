@@ -1,0 +1,5 @@
+tigera-operator:
+  tigeraOperator:
+    registry: registry-proxy.czy21-public.com
+  calicoctl:
+    image: 'registry-proxy.czy21-public.com/calico/ctl' # docker.io/calico/ctl

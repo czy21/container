@@ -8,7 +8,7 @@ ingress-nginx:
       kubernetes.io/hostname: node-31
     allowSnippetAnnotations: true
     image:
-      registry: 'registry-proxy.czy21-internal.com' # registry.k8s.io
+      registry: 'registry-proxy.czy21-public.com' # registry.k8s.io
     ingressClassResource:
       default: true
     hostNetwork: true
@@ -25,4 +25,4 @@ ingress-nginx:
     admissionWebhooks:
       patch:
         image:
-          registry: 'registry-proxy.czy21-internal.com'
+          registry: 'registry-proxy.czy21-public.com'
