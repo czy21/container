@@ -83,6 +83,8 @@ services:
     user: root
     expose:
       - "8080"
+    volumes:
+      - /volume5/storage/docker-data/rocketmq/dashboard/tmp/:/tmp/
     environment:
       JAVA_OPTS: -Drocketmq.namesrv.addr=rocketmq-namesrv:9876
     restart: always
