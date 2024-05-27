@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for ((i=1;i<=2;i++));do
+for i in $(seq 1 2);do
  broker_data_dir=/data/${i}
  broker_conf=${broker_data_dir}/broker.conf
  mkdir -p ${broker_data_dir}
@@ -14,5 +14,4 @@ brokerRole = ASYNC_MASTER
 flushDiskType = ASYNC_FLUSH
 EOF
 done
-
 echo "All done!";

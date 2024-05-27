@@ -1,7 +1,7 @@
 version: "3.9"
 
 x-rocketmq-common: &rocketmq-common
-  image: apache/rocketmq:4.9.4
+  image: apache/rocketmq:5.2.0
   privileged: true
   user: root
   restart: always
@@ -13,12 +13,12 @@ x-traefik-web-label: &traefik-web-label
 
 services:
   rocketmq-setup:
-    image: ubuntu:22.04
+    image: busybox
     container_name: rocketmq-setup
     volumes:
       - /volume5/storage/docker-data/rocketmq/conf/:/conf/
       - /volume5/storage/docker-data/rocketmq/broker/:/data/
-    command: bash /conf/setup.sh
+    command: sh /conf/setup.sh
     restart: always
   rocketmq-namesrv:
     <<: *rocketmq-common
@@ -46,6 +46,12 @@ services:
     depends_on:
       - rocketmq-setup
       - rocketmq-namesrv
+    environment:
+      JAVA_OPT_EXT: "-Xms4096m -Xmx4096m"
+    deploy:
+      resources:
+        limits:
+          memory: 8g
   rocketmq-broker-2:
     <<: *rocketmq-common
     container_name: rocketmq-broker-2
@@ -62,6 +68,12 @@ services:
     depends_on:
       - rocketmq-setup
       - rocketmq-namesrv
+    environment:
+      JAVA_OPT_EXT: "-Xms4096m -Xmx4096m"
+    deploy:
+      resources:
+        limits:
+          memory: 8g
   rocketmq-dashboard:
     image: apacherocketmq/rocketmq-dashboard
     container_name: rocketmq-dashboard
