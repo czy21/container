@@ -21,7 +21,7 @@ velero:
         bucket: velero
         config:
           region: minio
-          s3Url: http://<ip|domain>
+          s3Url: http://minio.czy21-internal.com
           s3ForcePathStyle: true
   snapshotsEnabled: false
   upgradeCRDs: false

@@ -23,7 +23,7 @@ services:
       - /volume5/storage/docker-data/concourse/data/worker-state/:/worker-state/
     environment:
       CONCOURSE_EXTERNAL_URL: "http://concourse.czy21-internal.com:80"
-      CONCOURSE_POSTGRES_HOST: "<ip>"
+      CONCOURSE_POSTGRES_HOST: "<db_host>"
       CONCOURSE_POSTGRES_USER: "postgres"
       CONCOURSE_POSTGRES_PASSWORD: "<password>"
       CONCOURSE_POSTGRES_DATABASE: concourse

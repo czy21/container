@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   ubuntu-openwrt:
-    image: docker.io/czy21/ubuntu-openwrt
+    image: registry.czy21-internal.com/library/ubuntu-openwrt
     pull_policy: always
     container_name: ubuntu-openwrt
     hostname: ubuntu-openwrt

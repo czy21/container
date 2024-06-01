@@ -22,7 +22,7 @@ services:
       SSCMS_DATABASE_TYPE: SQLite
       SSCMS_SECURITY_KEY: e2a3d303-ac9b-41ff-9154-930710af0845
 #      SSCMS_DATABASE_TYPE: MySQL
-#      SSCMS_DATABASE_HOST: "<ip>"
+#      SSCMS_DATABASE_HOST: "<db_host>"
 #      SSCMS_DATABASE_PORT: "3306"
 #      SSCMS_DATABASE_USER: "<username>"
 #      SSCMS_DATABASE_PASSWORD: "<password>"

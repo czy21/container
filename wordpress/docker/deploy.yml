@@ -19,7 +19,7 @@ services:
     volumes:
       - /volume5/storage/docker-data/wordpress/data/:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: "<ip>"
+      WORDPRESS_DB_HOST: "<db_host>"
       WORDPRESS_DB_USER: "<username>"
       WORDPRESS_DB_PASSWORD: "<password>"
       WORDPRESS_DB_NAME: wordpress

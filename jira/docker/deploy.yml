@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   jira:
-    image: docker.io/czy21/jira
+    image: registry.czy21-internal.com/library/jira
     container_name: jira
     privileged: true
     user: root

@@ -14,7 +14,7 @@ services:
       - /volume5/storage/docker-data/superset/data/superset/:/app/superset_home
     environment:
       DATABASE_DB: superset
-      DATABASE_HOST: <ip>
+      DATABASE_HOST: <db_host>
       DATABASE_PASSWORD: <password>
       DATABASE_USER: postgres
       DATABASE_PORT: 5432
@@ -23,7 +23,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: <password>
       PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
-      REDIS_HOST: <ip>
+      REDIS_HOST: 192.168.2.2
       REDIS_PORT: 6379
       FLASK_ENV: production
       SUPERSET_ENV: production
@@ -41,7 +41,7 @@ services:
       - /volume5/storage/docker-data/superset/data/superset/:/app/superset_home
     environment:
       DATABASE_DB: superset
-      DATABASE_HOST: <ip>
+      DATABASE_HOST: <db_host>
       DATABASE_PASSWORD: <password>
       DATABASE_USER: postgres
       DATABASE_PORT: 5432
@@ -50,7 +50,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: <password>
       PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
-      REDIS_HOST: <ip>
+      REDIS_HOST: 192.168.2.2
       REDIS_PORT: 6379
       FLASK_ENV: production
       SUPERSET_ENV: production
@@ -69,7 +69,7 @@ services:
       - /volume5/storage/docker-data/superset/data/superset/:/app/superset_home
     environment:
       DATABASE_DB: superset
-      DATABASE_HOST: <ip>
+      DATABASE_HOST: <db_host>
       DATABASE_PASSWORD: <password>
       DATABASE_USER: postgres
       DATABASE_PORT: 5432
@@ -78,7 +78,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: <password>
       PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
-      REDIS_HOST: <ip>
+      REDIS_HOST: 192.168.2.2
       REDIS_PORT: 6379
       FLASK_ENV: production
       SUPERSET_ENV: production
@@ -97,7 +97,7 @@ services:
       - /volume5/storage/docker-data/superset/data/superset/:/app/superset_home
     environment:
       DATABASE_DB: superset
-      DATABASE_HOST: <ip>
+      DATABASE_HOST: <db_host>
       DATABASE_PASSWORD: <password>
       DATABASE_USER: postgres
       DATABASE_PORT: 5432
@@ -106,7 +106,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: <password>
       PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
-      REDIS_HOST: <ip>
+      REDIS_HOST: 192.168.2.2
       REDIS_PORT: 6379
       FLASK_ENV: production
       SUPERSET_ENV: production

@@ -16,7 +16,7 @@ services:
       - "8096"
     volumes:
       - /volume5/storage/docker-data/jellyfin/conf/:/config/
-      - /volume5/public/media/:/media/
+      - /volume5/storage/public/media/:/media/
     environment:
       PUID: 1000
       PGID: 1000

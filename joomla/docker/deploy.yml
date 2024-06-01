@@ -19,7 +19,7 @@ services:
     volumes:
       - /volume5/storage/docker-data/joomla/data/:/var/www/html
     environment:
-      JOOMLA_DB_HOST: "<ip>"
+      JOOMLA_DB_HOST: "<db_host>"
       JOOMLA_DB_USER: "<username>"
       JOOMLA_DB_PASSWORD: "<password>"
       JOOMLA_DB_NAME: joomla

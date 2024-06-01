@@ -45,7 +45,7 @@ services:
       - "6881:6881" # bt port
     volumes:
       - /volume5/storage/docker-data/streaming/data/qbittorrent/:/config/
-      - /volume5/public/media/:/volume5/public/media/
+      - /volume5/storage/public/media/:/volume5/storage/public/media/
     environment:
       PUID: 1000
       PGID: 1000
@@ -74,7 +74,7 @@ services:
       <<: *traefik-radarr-label
     volumes:
       - /volume5/storage/docker-data/streaming/data/radarr/:/config/
-      - /volume5/public/media/:/volume5/public/media/
+      - /volume5/storage/public/media/:/volume5/storage/public/media/
     environment:
       PUID: 1000
       PGID: 1000
@@ -88,7 +88,7 @@ services:
       <<: *traefik-sonarr-label
     volumes:
       - /volume5/storage/docker-data/streaming/data/sonarr/:/config/
-      - /volume5/public/media/:/volume5/public/media/
+      - /volume5/storage/public/media/:/volume5/storage/public/media/
     environment:
       PUID: 1000
       PGID: 1000
@@ -115,7 +115,7 @@ services:
       <<: *traefik-bazarr-label
     volumes:
       - /volume5/storage/docker-data/streaming/data/bazarr/:/config/
-      - /volume5/public/media/:/volume5/public/media/
+      - /volume5/storage/public/media/:/volume5/storage/public/media/
     environment:
       PUID: 1000
       PGID: 1000
@@ -129,7 +129,7 @@ services:
       <<: *traefik-chinesesubfinder-label
     volumes:
       - /volume5/storage/docker-data/streaming/data/chinesesubfinder/:/config/
-      - /volume5/public/media/:/media/
+      - /volume5/storage/public/media/:/media/
     environment:
       PUID: 1000    
       PGID: 1000        
