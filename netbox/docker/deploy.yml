@@ -26,9 +26,9 @@ services:
       DB_NAME: netbox
       DB_USER: 'postgres'
       DB_PASSWORD: '<password>'
-      DB_HOST: '<ip>'
+      DB_HOST: '<db_host>'
       DB_PORT: '5432'
-      REDIS_HOST: '<ip>'
+      REDIS_HOST: '192.168.2.2'
       REDIS_PORT: '6379'
       REDIS_PASSWORD: '<password>'
       REDIS_DB_TASK: 0

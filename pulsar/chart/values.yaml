@@ -34,9 +34,9 @@ pulsar:
     replicaCount: 2
   pulsar_metadata:
     component: init
-    userProvidedZookeepers: <ip>:2181,<ip>:2182,<ip>:2183/pulsar/cluster1 # need manual create zk path
+    userProvidedZookeepers: 192.168.2.18:2181,192.168.2.18:2182,192.168.2.18:2183/pulsar/cluster1 # need manual create zk path
   pulsar_manager:
     component: manager
     configData:
       DRIVER_CLASS_NAME: org.postgresql.Driver
-      URL: jdbc:postgresql://<ip>:5432/pulsar_manager?user=postgres&password=<password>
+      URL: jdbc:postgresql://<db_host>:5432/pulsar_manager?user=postgres&password=<password>

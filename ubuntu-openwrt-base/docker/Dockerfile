@@ -1,6 +1,6 @@
 FROM ubuntu:jammy
 
-RUN sed -i.bak "s,\(ca.archive\|archive\|security\).ubuntu.com,<ip|domain>/repository/apt-proxy,g" /etc/apt/sources.list
+RUN sed -i.bak "s,\(ca.archive\|archive\|security\).ubuntu.com,nexus.czy21-internal.com/repository/apt-proxy,g" /etc/apt/sources.list
 RUN apt-get update
 
 RUN apt install -y wget vim git bash-completion make gcc sudo curl

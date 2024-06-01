@@ -13,5 +13,5 @@ services:
       <<: *traefik-label
     privileged: true
     user: root
-    command: -dsn "postgres://postgres:<password>@<ip>:5432/metatube" -port 8080 -db-auto-migrate -db-prepared-stmt
+    command: -dsn "postgres://postgres:<password>@<db_host>:5432/metatube" -port 8080 -db-auto-migrate -db-prepared-stmt
     restart: always

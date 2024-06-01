@@ -1,5 +1,5 @@
 zookeeper:
   image:
-    registry: registry-proxy.czy21-public.com
+    registry: registry-proxy.czy21-internal.com
     repository: bitnami/zookeeper
   replicaCount: 1

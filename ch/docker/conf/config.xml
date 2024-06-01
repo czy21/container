@@ -25,7 +25,7 @@
 
     <zookeeper>
         <node index="1">
-            <host><ip></host>
+            <host><db_host></host>
             <port>2181</port>
         </node>
     </zookeeper>

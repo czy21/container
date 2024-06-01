@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   homepage:
-    image: "registry-proxy.czy21-public.com/benphelps/homepage:v0.6.22" # ghcr.io/benphelps/homepage:latest
+    image: "registry-proxy.czy21-internal.com/benphelps/homepage:v0.6.22" # ghcr.io/benphelps/homepage:latest
     container_name: homepage
     hostname: homepage
     labels:

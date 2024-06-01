@@ -18,7 +18,7 @@ services:
     environment:
       DB_VENDOR: mysql
       DB_NAME: bonita
-      DB_HOST: '<ip>'
+      DB_HOST: '<db_host>'
       DB_PORT: '3306'
       DB_USER: '<username>'
       DB_PASS: '<password>'

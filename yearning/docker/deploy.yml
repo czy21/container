@@ -17,7 +17,7 @@ services:
     environment:
       MYSQL_USER: <username>
       MYSQL_PASSWORD: <password>
-      MYSQL_ADDR: <ip>
+      MYSQL_ADDR: <db_host>
       MYSQL_DB: yearning
       SECRET_KEY: dbcjqheupqjsuwsm
       IS_DOCKER: is_docker

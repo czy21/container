@@ -17,7 +17,7 @@ services:
       - "10000"
     user: root
     environment:
-      MYSQL_HOST: '<ip>'
+      MYSQL_HOST: '<db_host>'
       MYSQL_PORT: '3306'
       MYSQL_USER: '<username>'
       MYSQL_PASSWORD: '<password>'

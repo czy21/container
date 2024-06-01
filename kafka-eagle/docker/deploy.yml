@@ -7,7 +7,7 @@ x-traefik-label: &traefik-label
 
 services:
   kafka-eagle:
-    image: docker.io/czy21/kafka-eagle
+    image: registry.czy21-internal.com/library/kafka-eagle
     pull_policy: always
     container_name: kafka-eagle
     labels:

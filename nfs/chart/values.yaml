@@ -1,10 +1,10 @@
 nfs-subdir-external-provisioner:
   replicaCount: 1
   image:
-    repository: registry-proxy.czy21-public.com/sig-storage/nfs-subdir-external-provisioner
+    repository: registry-proxy.czy21-internal.com/sig-storage/nfs-subdir-external-provisioner
   storageClass:
     name: nfs
     defaultClass: true
   nfs:
-    server: <ip>
+    server: 192.168.2.18
     path: /export/kube-

@@ -1,9 +1,9 @@
 superset:
   supersetNode:
     connections:
-      redis_host: "<ip>"
+      redis_host: "192.168.2.2"
       redis_port: "6379"
-      db_host: "<ip>"
+      db_host: "<db_host>"
       db_port: "5432"
       db_user: postgres
       db_pass: <password>
