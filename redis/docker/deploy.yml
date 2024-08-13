@@ -62,11 +62,11 @@ services:
         --appendonly yes
         --cluster-enabled yes
         --cluster-announce-ip 192.168.2.18
-  redis-exporter:
+  redis-exporter-7000:
     <<: *redis-exporter-common
     labels:
       <<: *traefik-exporter-label
-    container_name: redis-exporter
+    container_name: redis-exporter-7000
     user: root
     expose:
       - "9121"
