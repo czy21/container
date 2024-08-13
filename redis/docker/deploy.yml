@@ -8,6 +8,9 @@ x-redis-common: &redis-common
     TZ: Asia/Shanghai
   restart: always
 
+x-redis-exporter-common: &redis-exporter-common
+  image: oliver006/redis_exporter:v1.62.0-alpine
+
 x-traefik-exporter-label: &traefik-exporter-label
   traefik.enable: true
   traefik.http.routers.redis-exporter.service: redis-exporter
@@ -59,11 +62,11 @@ services:
         --appendonly yes
         --cluster-enabled yes
         --cluster-announce-ip 192.168.2.18
-  redis-exporter-7000:
-    image: oliver006/redis_exporter:alpine
+  redis-exporter:
+    <<: *redis-exporter-common
     labels:
       <<: *traefik-exporter-label
-    container_name: redis-exporter-7000
+    container_name: redis-exporter
     user: root
     expose:
       - "9121"
