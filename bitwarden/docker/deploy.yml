@@ -33,4 +33,5 @@ services:
       globalSettings__mail__smtp__ssl: true
       globalSettings__mail__smtp__username: "805899926@qq.com"
       globalSettings__mail__smtp__password: "None"
+      adminSettings__admins: "805899926@qq.com"
     restart: always
