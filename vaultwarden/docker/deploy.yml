@@ -17,11 +17,11 @@ services:
       WEBSOCKET_ENABLED: true
       SIGNUPS_ALLOWED: false
       DOMAIN: "https://vaultwarden.czy21.com"
-      ADMIN_TOKEN: ""
+      ADMIN_TOKEN: "None"
       SMTP_HOST: "smtp.qq.com"
       SMTP_FROM: "805899926@qq.com"
       SMTP_PORT: "587"
       SMTP_SSL: "true"
       SMTP_USERNAME: "805899926@qq.com"
-      SMTP_PASSWORD: ""
+      SMTP_PASSWORD: "None"
     restart: always
