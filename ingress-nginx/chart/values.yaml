@@ -8,6 +8,7 @@ ingress-nginx:
       use-forwarded-headers: true
     nodeSelector:
       kubernetes.io/hostname: k8s-worker-1
+    terminationGracePeriodSeconds: 60
     allowSnippetAnnotations: true
     image:
       registry: 'registry-proxy.czy21-internal.com' # registry.k8s.io
