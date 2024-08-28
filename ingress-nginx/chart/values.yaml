@@ -29,3 +29,5 @@ ingress-nginx:
       patch:
         image:
           registry: 'registry-proxy.czy21-internal.com'
+    extraArgs:
+      default-ssl-certificate: "ops/czy21-internal.com-secret"
