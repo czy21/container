@@ -39,8 +39,8 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            czy21/${{ inputs.app }}:latest
-            ghcr.io/czy21/${{ inputs.app }}:latest
+            czy21/${{ inputs.app }}
+            ghcr.io/czy21/${{ inputs.app }}
 
       - name: Build and push Docker images
         id: push
