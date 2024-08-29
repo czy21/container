@@ -6,6 +6,11 @@ on:
       app:
         required: true
         type: string
+  workflow_call:
+    inputs:
+      app:
+        required: true
+        type: string
 
 permissions:
   packages: write
