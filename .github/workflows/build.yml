@@ -56,6 +56,6 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ghcr.io/${{ github.repository }}/${{ inputs.app }}
+          subject-name: ghcr.io/czy21/${{ inputs.app }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
