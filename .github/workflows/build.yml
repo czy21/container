@@ -5,7 +5,17 @@ on:
     inputs:
       app:
         required: true
-        type: string
+        type: choice
+        option:
+          - jdk-11
+          - jdk-17
+          - jdk-21
+          - graalvm-jdk-17
+          - jenkins
+          - jenkins-ssh-agent
+          - jenkins-inbound-agent
+          - hugo
+          - mkdoc
   workflow_call:
     inputs:
       app:
