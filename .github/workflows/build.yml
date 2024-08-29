@@ -45,6 +45,8 @@ jobs:
           images: |
             czy21/${{ inputs.app }}
             ghcr.io/czy21/${{ inputs.app }}
+          tags: |
+            type=raw,value=latest
 
       - name: Build and push Docker images
         id: push
