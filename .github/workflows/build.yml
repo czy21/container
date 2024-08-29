@@ -6,7 +6,7 @@ on:
       app:
         required: true
         type: choice
-        option:
+        options:
           - jdk-11
           - jdk-17
           - jdk-21
