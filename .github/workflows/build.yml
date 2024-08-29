@@ -39,7 +39,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            czy21/library
+            czy21/${{ inputs.app }}
             ghcr.io/${{ github.repository }}
 
       - name: Build and push Docker images
@@ -48,7 +48,7 @@ jobs:
         with:
           context: ${{ inputs.app }}/docker
           push: true
-          tags: ${{ inputs.app }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
