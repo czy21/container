@@ -57,6 +57,10 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
+      - name: Extract version
+        id: version
+        run: echo "image_version=`[[ -s ${{ inputs.app }}/docker/image-version ]] && cat ${{ inputs.app }}/docker/image-version || echo latest`" >> "$GITHUB_OUTPUT"
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -65,8 +69,7 @@ jobs:
             ${{ secrets.REGISTRY_URL }}/library/${{ inputs.app }}
             docker.io/czy21/${{ inputs.app }}
             ghcr.io/czy21/${{ inputs.app }}
-          tags: |
-            type=raw,value=latest
+          tags: type=raw,value=${{ setups.version.outputs.image_version }}
 
       - name: Build and push Docker images
         id: push
