@@ -69,7 +69,7 @@ jobs:
             ${{ secrets.REGISTRY_URL }}/library/${{ inputs.app }}
             docker.io/czy21/${{ inputs.app }}
             ghcr.io/czy21/${{ inputs.app }}
-          tags: type=raw,value=${{ setups.version.outputs.image_version }}
+          tags: type=raw,value=${{ steps.version.outputs.image_version }}
 
       - name: Build and push Docker images
         id: push
