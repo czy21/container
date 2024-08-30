@@ -71,7 +71,7 @@ jobs:
             ghcr.io/czy21/${{ inputs.app }}
           tags: |
             type=raw,value=${{ steps.version.outputs.image_version }}
-            type=raw,value=latest
+            type=raw,value=latest,enable=${{ steps.version.outputs.image_version != 'latest' }}
 
       - name: Build and push Docker images
         id: push
