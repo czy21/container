@@ -14,6 +14,7 @@ on:
           - jenkins
           - jenkins-ssh-agent
           - jenkins-inbound-agent
+          - nginx-spa
           - hugo
           - mkdoc
           - ubuntu-openwrt
