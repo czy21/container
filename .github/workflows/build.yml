@@ -74,7 +74,7 @@ jobs:
             type=raw,value=${{ steps.version.outputs.image_version }}
             type=raw,value=latest,enable=${{ steps.version.outputs.image_version != 'latest' }}
           labels: |
-            org.opencontainers.image.url=$${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.url=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}/tree/main/${{ inputs.app }}
             org.opencontainers.image.title=${{ inputs.app }}
 
