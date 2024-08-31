@@ -5,19 +5,7 @@ on:
     inputs:
       app:
         required: true
-        type: choice
-        options:
-          - jdk-11
-          - jdk-17
-          - jdk-21
-          - graalvm-jdk-17
-          - jenkins
-          - jenkins-ssh-agent
-          - jenkins-inbound-agent
-          - nginx-spa
-          - hugo
-          - mkdoc
-          - ubuntu-openwrt
+        type: string
 
 permissions:
   packages: write
