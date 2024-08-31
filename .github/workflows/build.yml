@@ -19,12 +19,6 @@ on:
           - mkdoc
           - ubuntu-openwrt
 
-permissions:
-  packages: write
-  contents: read
-  attestations: write
-  id-token: write
-
 jobs:
   build:
     name: Build
