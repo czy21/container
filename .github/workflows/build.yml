@@ -18,6 +18,9 @@ on:
           - hugo
           - mkdoc
           - ubuntu-openwrt
+      tag:
+        required: false
+        type: string
 
 jobs:
   build:
