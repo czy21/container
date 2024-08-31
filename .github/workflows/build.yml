@@ -16,6 +16,7 @@ on:
           - jenkins-inbound-agent
           - hugo
           - mkdoc
+          - ubuntu-openwrt
   workflow_call:
     inputs:
       app:
