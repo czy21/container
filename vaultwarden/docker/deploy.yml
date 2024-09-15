@@ -23,5 +23,5 @@ services:
       SMTP_PORT: "587"
       SMTP_SSL: "true"
       SMTP_USERNAME: "805899926@qq.com"
-      SMTP_PASSWORD: "None"
+      SMTP_PASSWORD: "<secret_value>"
     restart: always
