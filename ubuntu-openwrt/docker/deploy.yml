@@ -1,13 +1,30 @@
 version: "3.9"
 
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.openwrt-content.service: openwrt-content
+  traefik.http.services.openwrt-content.loadbalancer.server.port: 80
+
 services:
-  ubuntu-openwrt:
+  openwrt-builder:
     image: registry.czy21-internal.com/library/ubuntu-openwrt
     pull_policy: always
-    container_name: ubuntu-openwrt
-    hostname: ubuntu-openwrt
+    container_name: openwrt-builder
+    hostname: openwrt-builder
     user: opsor
     tty: true
     volumes:
+      - /volume5/storage/docker-data/ubuntu-openwrt/data/:/data/
+    restart: always
+
+  openwrt-content:
+    image: nginx:1.27.0-alpine
+    labels:
+      <<: *traefik-label
+    pull_policy: always
+    container_name: openwrt-content
+    hostname: openwrt-builder
+    volumes:
+      - /volume5/storage/docker-data/ubuntu-openwrt/conf/nginx/conf.d/:/etc/nginx/conf.d/
       - /volume5/storage/docker-data/ubuntu-openwrt/data/:/data/
     restart: always
