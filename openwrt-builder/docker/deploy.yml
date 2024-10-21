@@ -11,7 +11,6 @@ services:
     pull_policy: always
     container_name: openwrt-builder
     hostname: openwrt-builder
-    user: opsor
     tty: true
     volumes:
       - /volume5/storage/docker-data/openwrt-builder/data/:/data/
