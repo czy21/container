@@ -17,7 +17,7 @@ on:
           - nginx-spa
           - hugo
           - mkdoc
-          - ubuntu-openwrt
+          - openwrt-builder
 
 jobs:
   build:
