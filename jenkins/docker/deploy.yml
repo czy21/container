@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   jenkins:
-    image: "registry.czy21-internal.com/library/jenkins:jdk17"
+    image: "registry.czy21-internal.com/library/jenkins:2.485-jdk21"
     pull_policy: always
     container_name: jenkins
     privileged: true
@@ -23,6 +23,7 @@ services:
     environment:
       JENKINS_UC: https://mirrors.aliyun.com/jenkins/updates/update-center.json
       JENKINS_UC_EXPERIMENTAL: https://mirrors.aliyun.com/jenkins/updates/experimental/update-center.json
+      JAVA_OPTS: "-Xverify:none"
       DOCKER_HOST: tcp://docker:2376
       DOCKER_CERT_PATH: /docker-certs/client
       DOCKER_TLS_VERIFY: 1
