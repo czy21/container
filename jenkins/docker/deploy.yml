@@ -23,7 +23,6 @@ services:
     environment:
       JENKINS_UC: https://mirrors.aliyun.com/jenkins/updates/update-center.json
       JENKINS_UC_EXPERIMENTAL: https://mirrors.aliyun.com/jenkins/updates/experimental/update-center.json
-      JAVA_OPTS: "-Xverify:none"
       DOCKER_HOST: tcp://docker:2376
       DOCKER_CERT_PATH: /docker-certs/client
       DOCKER_TLS_VERIFY: 1
