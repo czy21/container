@@ -7,10 +7,10 @@ on:
         required: true
         type: choice
         options:
-          - jdk-11
-          - jdk-17
-          - jdk-21
-          - graalvm-jdk-17
+          - jdk11
+          - jdk17
+          - jdk17-graalvm
+          - jdk21
           - jenkins
           - jenkins-ssh-agent
           - jenkins-inbound-agent
