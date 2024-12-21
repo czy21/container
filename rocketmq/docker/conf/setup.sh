@@ -4,7 +4,7 @@ for i in $(seq 1 2);do
  broker_data_dir=/data/${i}
  broker_conf=${broker_data_dir}/broker.conf
  mkdir -p ${broker_data_dir}
-cat << EOF > ${broker_conf}
+ tee ${broker_conf} << EOF
 brokerClusterName = cluster1
 brokerName = rocketmq-broker-${i}
 brokerId = 0

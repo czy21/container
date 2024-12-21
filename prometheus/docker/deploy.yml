@@ -13,6 +13,7 @@ services:
     labels:
       <<: *traefik-label
     privileged: true
+    user: root
     volumes:
       - /volume5/storage/docker-data/prometheus/conf/:/etc/prometheus/
       - /volume5/storage/docker-data/prometheus/data/:/prometheus/
@@ -24,5 +25,4 @@ services:
       - --storage.tsdb.no-lockfile
       - --storage.tsdb.retention.time=7d
       - --web.enable-lifecycle
-    user: root
     restart: always
