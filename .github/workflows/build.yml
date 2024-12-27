@@ -11,6 +11,7 @@ on:
           - jdk17
           - jdk17-graalvm
           - jdk21
+          - jdk21-graalvm
           - jenkins
           - jenkins-ssh-agent
           - jenkins-inbound-agent
