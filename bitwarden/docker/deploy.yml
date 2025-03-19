@@ -22,7 +22,7 @@ services:
       BW_DOMAIN: bitwarden.czy21.com
       BW_DB_PROVIDER: mysql
       BW_DB_DATABASE: bitwarden_vault
-      BW_DB_SERVER: "<db_host>"
+      BW_DB_SERVER: "192.168.2.2"
       BW_DB_PORT: "3306"
       BW_DB_USERNAME: "<username>"
       BW_DB_PASSWORD: "<password>"
