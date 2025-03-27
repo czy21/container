@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   docker:
-    image: "docker:27.2.0"
+    image: "docker:27.5.1"
     pull_policy: always
     container_name: docker
     hostname: docker
