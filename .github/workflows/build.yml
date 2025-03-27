@@ -7,6 +7,9 @@ on:
         required: true
         type: choice
         options:
+          - aspnet6
+          - aspnet7
+          - aspnet8
           - aspnet9
           - jdk11
           - jdk17
