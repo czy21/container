@@ -6,9 +6,9 @@ x-traefik-label-server: &traefik-label-server
   traefik.http.services.immich-server.loadbalancer.server.port: 3001
 
 x-immich-env: &immich-env
-  DB_URL: postgresql://postgres:<password>@<db_host>:5435/immich
+  DB_URL: postgresql://postgres:<secret_value>@<db_host>:5435/immich
   REDIS_HOSTNAME: '192.168.2.2'
-  REDIS_PASSWORD: '<password>'
+  REDIS_PASSWORD: '<secret_value>'
 
 services:
   immich-server:

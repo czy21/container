@@ -20,7 +20,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       MYSQL_ALLOW_EMPTY_PASSWORD: 0
-      MYSQL_ROOT_PASSWORD: "<password>"
+      MYSQL_ROOT_PASSWORD: "<secret_value>"
     restart: always
 
   mysql-exporter-3306:
@@ -28,5 +28,5 @@ services:
     container_name: mysql-exporter-3306
     command: --mysqld.address=mysql:3306 --mysqld.username=<username>
     environment:
-      MYSQLD_EXPORTER_PASSWORD: <password>
+      MYSQLD_EXPORTER_PASSWORD: <secret_value>
     restart: always

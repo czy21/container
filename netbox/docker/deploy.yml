@@ -21,16 +21,16 @@ services:
       PGID: 1000
       TZ: Asia/Shanghai
       SUPERUSER_EMAIL: 805899926@qq.com
-      SUPERUSER_PASSWORD: '<password>'
+      SUPERUSER_PASSWORD: '<secret_value>'
       ALLOWED_HOST: '*'
       DB_NAME: netbox
       DB_USER: 'postgres'
-      DB_PASSWORD: '<password>'
+      DB_PASSWORD: '<secret_value>'
       DB_HOST: '<db_host>'
       DB_PORT: '5432'
       REDIS_HOST: '192.168.2.2'
       REDIS_PORT: '6379'
-      REDIS_PASSWORD: '<password>'
+      REDIS_PASSWORD: '<secret_value>'
       REDIS_DB_TASK: 0
       REDIS_DB_CACHE: 0
     restart: always

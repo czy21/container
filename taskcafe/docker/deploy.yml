@@ -22,7 +22,7 @@ services:
     environment:
       TASKCAFE_DATABASE_HOST: "<db_host>"
       TASKCAFE_DATABASE_USER: "postgres"
-      TASKCAFE_DATABASE_PASSWORD: "<password>"
+      TASKCAFE_DATABASE_PASSWORD: "<secret_value>"
       TASKCAFE_DATABASE_NAME: "taskcafe"
       TASKCAFE_MIGRATE: true
     restart: always

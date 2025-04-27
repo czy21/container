@@ -14,5 +14,5 @@ services:
     environment:
       ELASTICSEARCH_HOSTS: "es.czy21-internal.com:80"
       ELASTICSEARCH_USERNAME: "<username>"
-      ELASTICSEARCH_PASSWORD: "<password>"
+      ELASTICSEARCH_PASSWORD: "<secret_value>"
     restart: always

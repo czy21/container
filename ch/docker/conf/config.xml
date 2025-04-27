@@ -9,7 +9,7 @@
                     <host>ch-1-1</host>
                     <port>9000</port>
                     <user><username></user>
-                    <password><password></password>
+                    <password><secret_value></password>
                 </replica>
             </shard>
             <shard>
@@ -17,7 +17,7 @@
                     <host>ch-1-2</host>
                     <port>9000</port>
                     <user><username></user>
-                    <password><password></password>
+                    <password><secret_value></password>
                 </replica>
             </shard>
         </ch-1>

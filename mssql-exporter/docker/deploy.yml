@@ -11,7 +11,7 @@ services:
       SERVER: <db_host>
       PORT: 1433
       USERNAME: sa
-      PASSWORD: <password>
+      PASSWORD: <secret_value>
       DEBUG: app
 
     user: root

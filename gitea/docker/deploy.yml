@@ -34,7 +34,7 @@ services:
       GITEA__database__NAME: gitea
       GITEA__database__HOST: "<db_host>:3306"
       GITEA__database__USER: "<username>"
-      GITEA__database__PASSWD: "<password>"
+      GITEA__database__PASSWD: "<secret_value>"
       GITEA__service__DISABLE_REGISTRATION: true
       GITEA__packages__ENABLED: "true"
       GITEA__repository__DEFAULT_REPO_UNITS: repo.code,repo.releases

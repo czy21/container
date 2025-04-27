@@ -4,7 +4,7 @@ x-db-common: &db-common
   SPAN_STORAGE_TYPE: elasticsearch
   ES_SERVER_URLS: http://es.czy21-internal.com:80
   ES_USERNAME: "<username>"
-  ES_PASSWORD: "<password>"
+  ES_PASSWORD: "<secret_value>"
 
 x-traefik-collector-label: &traefik-collector-label
   traefik.enable: true

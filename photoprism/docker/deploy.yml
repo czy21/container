@@ -19,4 +19,4 @@ services:
       - /volume5/storage/docker-data/photoprism/data/:/photoprism
     restart: always
     environment:
-      PHOTOPRISM_ADMIN_PASSWORD: "<password>"
+      PHOTOPRISM_ADMIN_PASSWORD: "<secret_value>"

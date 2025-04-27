@@ -6,7 +6,7 @@
           type: grafana
           url: http://grafana.czy21-internal.com
           username: <username>
-          password: <password>
+          password: <secret_value>
           
     - traefik-base:
         icon: traefik.svg
@@ -48,7 +48,7 @@
           type: qbittorrent
           url: http://qb.czy21-internal.com
           username: <username>
-          password: <password>
+          password: <secret_value>
     - sonarr:
         icon: sonarr.svg
         href: http://sonarr.czy21-internal.com

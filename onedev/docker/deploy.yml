@@ -19,7 +19,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       initial_user: "<username>"
-      initial_password: "<password>"
+      initial_password: "<secret_value>"
       initial_email: 805899926@qq.com
       initial_server_url: http://onedev.czy21-internal.com
     restart: always

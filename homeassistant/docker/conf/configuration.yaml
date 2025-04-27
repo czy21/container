@@ -14,7 +14,7 @@ http:
     - 0.0.0.0/0
 
 recorder:
-  db_url: postgresql://postgres:<password>@<db_host>:5432/homeassistant
+  db_url: postgresql://postgres:<secret_value>@<db_host>:5432/homeassistant
   purge_keep_days: 180
 
 # Text to speech

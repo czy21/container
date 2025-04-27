@@ -24,7 +24,7 @@ services:
     environment:
       CLICKHOUSE_DB: default
       CLICKHOUSE_USER: <username>
-      CLICKHOUSE_PASSWORD: <password>
+      CLICKHOUSE_PASSWORD: <secret_value>
       CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
   ch-1-2:
     <<: *app-common
@@ -46,5 +46,5 @@ services:
     environment:
       CLICKHOUSE_DB: default
       CLICKHOUSE_USER: <username>
-      CLICKHOUSE_PASSWORD: <password>
+      CLICKHOUSE_PASSWORD: <secret_value>
       CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1

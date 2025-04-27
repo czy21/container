@@ -21,11 +21,11 @@ services:
       DB_HOST: "<db_host>"
       DB_PORT: "3306"
       DB_USER: "<username>"
-      DB_PASSWORD: "<password>"
+      DB_PASSWORD: "<secret_value>"
       DB_NAME: "jms"
       REDIS_HOST: "192.168.2.2"
       REDIS_PORT: "6379"
-      REDIS_PASSWORD: "<password>"
+      REDIS_PASSWORD: "<secret_value>"
     healthcheck:
       test: "curl -fsL http://localhost:8080/api/health/ > /dev/null"
       interval: 10s
@@ -53,11 +53,11 @@ services:
       DB_HOST: "<db_host>"
       DB_PORT: "3306"
       DB_USER: "<username>"
-      DB_PASSWORD: "<password>"
+      DB_PASSWORD: "<secret_value>"
       DB_NAME: "jms"
       REDIS_HOST: "192.168.2.2"
       REDIS_PORT: "6379"
-      REDIS_PASSWORD: "<password>"
+      REDIS_PASSWORD: "<secret_value>"
     depends_on:
       jms-core:
         condition: service_healthy

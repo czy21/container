@@ -19,4 +19,4 @@ services:
     volumes:
       - /volume5/storage/docker-data/scm-manger/data/:/var/lib/scm/
     environment:
-      JAVA_OPTS: "-Dscm.initialUser=<username> -Dscm.initialPassword=<password>"
+      JAVA_OPTS: "-Dscm.initialUser=<username> -Dscm.initialPassword=<secret_value>"

@@ -21,12 +21,12 @@ services:
     environment:
       TZ: Asia/Shanghai
       MYSQL_ALLOW_EMPTY_PASSWORD: 0
-      MYSQL_ROOT_PASSWORD: "<password>"
+      MYSQL_ROOT_PASSWORD: "<secret_value>"
     restart: always
 
   mysql-slave-exporter-3306:
     image: prom/mysqld-exporter
     container_name: mysql-slave-exporter-3306
     environment:
-      DATA_SOURCE_NAME: "root:<password>@(mysql-slave:3306)/"
+      DATA_SOURCE_NAME: "root:<secret_value>@(mysql-slave:3306)/"
     restart: always

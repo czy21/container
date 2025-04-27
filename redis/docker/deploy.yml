@@ -28,7 +28,7 @@ services:
     environment:
       REDIS_ARGS: |-
         --port 7000
-        --requirepass <password>
+        --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
         --cluster-announce-ip 192.168.2.18
@@ -43,7 +43,7 @@ services:
     environment:
       REDIS_ARGS: |-
         --port 7001
-        --requirepass <password>
+        --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
         --cluster-announce-ip 192.168.2.18
@@ -58,7 +58,7 @@ services:
     environment:
       REDIS_ARGS: |-
         --port 7002
-        --requirepass <password>
+        --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
         --cluster-announce-ip 192.168.2.18
@@ -72,7 +72,7 @@ services:
       - "9121"
     command:
       - --redis.addr=redis://redis-1:7000
-      - --redis.password=<password>
+      - --redis.password=<secret_value>
     environment:
       REDIS_EXPORTER_IS_CLUSTER: "true"
     restart: always

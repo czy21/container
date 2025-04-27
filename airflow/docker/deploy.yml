@@ -10,9 +10,9 @@ x-airflow-common:
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:<password>@<db_host>:5432/airflow
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://postgres:<password>@<db_host>:5432/airflow
-    AIRFLOW__CELERY__BROKER_URL: redis://:<password>@192.168.2.2:6379/0
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:<secret_value>@<db_host>:5432/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://postgres:<secret_value>@<db_host>:5432/airflow
+    AIRFLOW__CELERY__BROKER_URL: redis://:<secret_value>@192.168.2.2:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
@@ -161,7 +161,7 @@ services:
       _AIRFLOW_DB_MIGRATE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: '<username>'
-      _AIRFLOW_WWW_USER_PASSWORD: '<password>'
+      _AIRFLOW_WWW_USER_PASSWORD: '<secret_value>'
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "0:0"
     volumes:

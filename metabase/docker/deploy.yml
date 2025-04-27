@@ -20,5 +20,5 @@ services:
       MB_DB_HOST: <db_host>
       MB_DB_PORT: 3306
       MB_DB_USER: <username>
-      MB_DB_PASS: <password>
+      MB_DB_PASS: <secret_value>
     restart: always

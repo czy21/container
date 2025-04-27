@@ -18,4 +18,4 @@ services:
       - /volume5/storage/docker-data/rabbitmq/data/:/var/lib/rabbitmq/
     environment:
       RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: "<password>"
+      RABBITMQ_DEFAULT_PASS: "<secret_value>"

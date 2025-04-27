@@ -27,7 +27,7 @@ http:
 # The initial password of Harbor admin
 # It only works in first time to install harbor
 # Remember Change the admin password from UI after launching Harbor.
-harbor_admin_password: <password>
+harbor_admin_password: <secret_value>
 
 # Harbor DB configuration
 database:
@@ -142,7 +142,7 @@ external_database:
      port: 5432
      db_name: harbor
      username: postgres
-     password: <password>
+     password: <secret_value>
      ssl_mode: disable
      max_idle_conns: 2
      max_open_conns: 0
@@ -168,7 +168,7 @@ external_redis:
 #   # host for redis+sentinel:
 #   #<host_sentinel1>:<port_sentinel1>,<host_sentinel2>:<port_sentinel2>,<host_sentinel3>:<port_sentinel3>
   host: 192.168.2.2:6379
-  password: <password>
+  password: <secret_value>
 #   # sentinel_master_set must be set to support redis+sentinel
 #   #sentinel_master_set:
 #   # db_index 0 is for core, it's unchangeable

@@ -13,7 +13,7 @@ velero:
       cloud: |
         [default]
         aws_access_key_id=<username>
-        aws_secret_access_key=<password>
+        aws_secret_access_key=<secret_value>
   configuration:
     backupStorageLocation:
       - name: default

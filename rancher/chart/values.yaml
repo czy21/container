@@ -1,6 +1,6 @@
 rancher:
   hostname: rancher-.czy21-internal.com
-  bootstrapPassword: <password>
+  bootstrapPassword: <secret_value>
   ingress:
     ingressClassName: "nginx"
     tls:

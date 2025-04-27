@@ -22,6 +22,6 @@ services:
       database__client: mysql
       database__connection__host: "<db_host>"
       database__connection__user: "<username>"
-      database__connection__password: "<password>"
+      database__connection__password: "<secret_value>"
       database__connection__database: ghost
     restart: always

@@ -25,9 +25,9 @@ services:
       CONCOURSE_EXTERNAL_URL: "http://concourse.czy21-internal.com:80"
       CONCOURSE_POSTGRES_HOST: "<db_host>"
       CONCOURSE_POSTGRES_USER: "postgres"
-      CONCOURSE_POSTGRES_PASSWORD: "<password>"
+      CONCOURSE_POSTGRES_PASSWORD: "<secret_value>"
       CONCOURSE_POSTGRES_DATABASE: concourse
-      CONCOURSE_ADD_LOCAL_USER: "<username>:<password>"
+      CONCOURSE_ADD_LOCAL_USER: "<username>:<secret_value>"
       CONCOURSE_MAIN_TEAM_LOCAL_USER: "<username>"
       CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
       CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key

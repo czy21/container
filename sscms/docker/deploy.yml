@@ -25,6 +25,6 @@ services:
 #      SSCMS_DATABASE_HOST: "<db_host>"
 #      SSCMS_DATABASE_PORT: "3306"
 #      SSCMS_DATABASE_USER: "<username>"
-#      SSCMS_DATABASE_PASSWORD: "<password>"
+#      SSCMS_DATABASE_PASSWORD: "<secret_value>"
 #      SSCMS_DATABASE_NAME: sscms
     restart: always

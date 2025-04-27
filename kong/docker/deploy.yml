@@ -22,7 +22,7 @@ services:
       KONG_PG_DATABASE: kong
       KONG_PG_HOST: "<db_host>"
       KONG_PG_USER: "postgres"
-      KONG_PG_PASSWORD: "<password>"
+      KONG_PG_PASSWORD: "<secret_value>"
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_ADMIN_ACCESS_LOG: /dev/stdout

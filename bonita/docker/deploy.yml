@@ -21,14 +21,14 @@ services:
       DB_HOST: '<db_host>'
       DB_PORT: '3306'
       DB_USER: '<username>'
-      DB_PASS: '<password>'
+      DB_PASS: '<secret_value>'
       BIZ_DB_NAME: bonita_home
       BIZ_DB_USER: '<username>'
-      BIZ_DB_PASS: '<password>'
+      BIZ_DB_PASS: '<secret_value>'
       TENANT_LOGIN: '<username>'
-      TENANT_PASSWORD: '<password>'
+      TENANT_PASSWORD: '<secret_value>'
       PLATFORM_LOGIN: '<username>'
-      PLATFORM_PASSWORD: '<password>'
+      PLATFORM_PASSWORD: '<secret_value>'
     entrypoint:
       - bash
       - -c

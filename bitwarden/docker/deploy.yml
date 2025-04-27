@@ -25,7 +25,7 @@ services:
       BW_DB_SERVER: "192.168.2.2"
       BW_DB_PORT: "3306"
       BW_DB_USERNAME: "<username>"
-      BW_DB_PASSWORD: "<password>"
+      BW_DB_PASSWORD: "<secret_value>"
       BW_INSTALLATION_ID: 0cdbf50e-b964-4e05-a9b7-b1d80044fcba
       BW_INSTALLATION_KEY: qEpXxKJiPjwETG4HmX2b
       BW_REAL_IPS: 172.19.0.0/16,10.8.5.0/24

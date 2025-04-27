@@ -15,20 +15,20 @@ x-superset-env: &superset-env
   DATABASE_HOST: "<db_host>"
   DATABASE_PORT: "3306"
   DATABASE_USER: "<username>"
-  DATABASE_PASSWORD: "<password>"
+  DATABASE_PASSWORD: "<secret_value>"
   EXAMPLES_DB: superset
   EXAMPLES_HOST: "<db_host>"
   EXAMPLES_PORT: "3306"
   EXAMPLES_USER: "<username>"
-  EXAMPLES_PASSWORD: "<password>"
+  EXAMPLES_PASSWORD: "<secret_value>"
   DATABASE_DIALECT: mysql
   MYSQL_DB: superset
   MYSQL_USER: "<username>"
-  MYSQL_PASSWORD: "<password>"
+  MYSQL_PASSWORD: "<secret_value>"
   PYTHONPATH: /app/pythonpath:/app/docker/pythonpath
   REDIS_HOST: "192.168.2.2"
   REDIS_PORT: "6379"
-  REDIS_PASSWORD: "<password>"
+  REDIS_PASSWORD: "<secret_value>"
   FLASK_ENV: true
   SUPERSET_ENV: production
   SUPERSET_SECRET_KEY: production

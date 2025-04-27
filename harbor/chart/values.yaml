@@ -13,4 +13,4 @@ harbor:
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/proxy-body-size: "0"
   externalURL: http://harbor.cluster2.com
-  harborAdminPassword: <password>
+  harborAdminPassword: <secret_value>
