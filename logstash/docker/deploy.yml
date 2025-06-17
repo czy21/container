@@ -14,4 +14,4 @@ services:
       - /volume5/storage/docker-data/logstash/conf/logstash.yml:/usr/share/logstash/config/logstash.yml
       - /volume5/storage/docker-data/logstash/conf/pipeline/:/usr/share/logstash/pipeline/
       - /volume5/storage/docker-data/app/log/:/app/log/
-    restart: always
+    restart: no # 避免连接不上es,cpu负载高以及产生大量jruby文件
