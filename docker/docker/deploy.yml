@@ -14,4 +14,7 @@ services:
       - /volume5/storage/docker-data/docker/data/:/var/lib/docker
     environment:
       DOCKER_TLS_CERTDIR: /certs
+    tmpfs:
+      - /run
+      - /var/run
     restart: always
