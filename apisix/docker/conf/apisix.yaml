@@ -23,9 +23,9 @@ deployment:
 
   etcd:
     host:                           # it's possible to define multiple etcd hosts addresses of the same etcd cluster.
-      - "http://192.168.2.18:2381"
-      - "http://192.168.2.18:2383"
-      - "http://192.168.2.18:2385"
+      - "http://192.168.20.18:2381"
+      - "http://192.168.20.18:2383"
+      - "http://192.168.20.18:2385"
     prefix: "/apisix"               # apisix configurations prefix
     timeout: 30                     # 30 seconds
 

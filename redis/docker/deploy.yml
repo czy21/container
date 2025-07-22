@@ -31,7 +31,7 @@ services:
         --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
-        --cluster-announce-ip 192.168.2.18
+        --cluster-announce-ip 192.168.20.18
   redis-2:
     <<: *redis-common
     container_name: redis-2
@@ -46,7 +46,7 @@ services:
         --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
-        --cluster-announce-ip 192.168.2.18
+        --cluster-announce-ip 192.168.20.18
   redis-3:
     <<: *redis-common
     container_name: redis-3
@@ -61,7 +61,7 @@ services:
         --requirepass <secret_value>
         --appendonly yes
         --cluster-enabled yes
-        --cluster-announce-ip 192.168.2.18
+        --cluster-announce-ip 192.168.20.18
   redis-exporter-7000:
     <<: *redis-exporter-common
     labels:

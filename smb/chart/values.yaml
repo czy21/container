@@ -1,4 +1,4 @@
-share_path: 192.168.2.18/kube-
+share_path: 192.168.20.18/kube-
 
 csi-driver-smb:
   image:
