@@ -23,7 +23,7 @@ services:
       DB_USER: "<username>"
       DB_PASSWORD: "<secret_value>"
       DB_NAME: "jms"
-      REDIS_HOST: "192.168.2.2"
+      REDIS_HOST: "192.168.20.2"
       REDIS_PORT: "6379"
       REDIS_PASSWORD: "<secret_value>"
     healthcheck:
@@ -55,7 +55,7 @@ services:
       DB_USER: "<username>"
       DB_PASSWORD: "<secret_value>"
       DB_NAME: "jms"
-      REDIS_HOST: "192.168.2.2"
+      REDIS_HOST: "192.168.20.2"
       REDIS_PORT: "6379"
       REDIS_PASSWORD: "<secret_value>"
     depends_on:

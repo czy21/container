@@ -26,7 +26,7 @@ x-superset-env: &superset-env
   MYSQL_USER: "<username>"
   MYSQL_PASSWORD: "<secret_value>"
   PYTHONPATH: /app/pythonpath:/app/docker/pythonpath
-  REDIS_HOST: "192.168.2.2"
+  REDIS_HOST: "192.168.20.2"
   REDIS_PORT: "6379"
   REDIS_PASSWORD: "<secret_value>"
   FLASK_ENV: true

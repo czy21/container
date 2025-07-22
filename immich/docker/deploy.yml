@@ -7,7 +7,7 @@ x-traefik-label-server: &traefik-label-server
 
 x-immich-env: &immich-env
   DB_URL: postgresql://postgres:<secret_value>@<db_host>:5435/immich
-  REDIS_HOSTNAME: '192.168.2.2'
+  REDIS_HOSTNAME: '192.168.20.2'
   REDIS_PASSWORD: '<secret_value>'
 
 services:

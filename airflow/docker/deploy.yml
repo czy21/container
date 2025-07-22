@@ -12,7 +12,7 @@ x-airflow-common:
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:<secret_value>@<db_host>:5432/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://postgres:<secret_value>@<db_host>:5432/airflow
-    AIRFLOW__CELERY__BROKER_URL: redis://:<secret_value>@192.168.2.2:6379/0
+    AIRFLOW__CELERY__BROKER_URL: redis://:<secret_value>@192.168.20.2:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'

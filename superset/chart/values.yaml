@@ -1,7 +1,7 @@
 superset:
   supersetNode:
     connections:
-      redis_host: "192.168.2.2"
+      redis_host: "192.168.20.2"
       redis_port: "6379"
       db_host: "<db_host>"
       db_port: "5432"
