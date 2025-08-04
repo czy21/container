@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.485-jdk21
+FROM jenkins/jenkins:2.521-jdk21
 
 USER root
 RUN apt-get update -y && apt-get install -y lsb-release

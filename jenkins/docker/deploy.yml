@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   jenkins:
-    image: "registry.czy21-internal.com/library/jenkins:2.485-jdk21"
+    image: "registry.czy21-internal.com/library/jenkins:2.521-jdk21"
     pull_policy: always
     container_name: jenkins
     privileged: true
