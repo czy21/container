@@ -11,7 +11,7 @@ ingress-nginx:
     terminationGracePeriodSeconds: 60
     allowSnippetAnnotations: true
     image:
-      registry: 'registry-proxy.czy21-internal.com' # registry.k8s.io
+      registry: 'registry-proxy.czy21.com' # registry.k8s.io
     ingressClassResource:
       default: true
     hostNetwork: true
@@ -28,6 +28,6 @@ ingress-nginx:
     admissionWebhooks:
       patch:
         image:
-          registry: 'registry-proxy.czy21-internal.com'
+          registry: 'registry-proxy.czy21.com'
     extraArgs:
       default-ssl-certificate: "ops/czy21-internal.com-secret"

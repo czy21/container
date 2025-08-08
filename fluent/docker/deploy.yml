@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   fluent:
-    image: "registry.czy21-internal.com/library/fluent"
+    image: "registry.czy21.com/library/fluent"
     pull_policy: always
     container_name: fluent
     privileged: true

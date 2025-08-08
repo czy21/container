@@ -7,7 +7,7 @@ x-traefik-label: &traefik-label
 
 services:
   chat2db:
-    image: "registry.czy21-internal.com/library/chat2db"
+    image: "registry.czy21.com/library/chat2db"
     pull_policy: always
     container_name: chat2db
     labels:

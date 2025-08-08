@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   openwrt-web:
-    image: 'registry.czy21-internal.com/library/openwrt-web'
+    image: 'registry.czy21.com/library/openwrt-web'
     pull_policy: always
     container_name: openwrt-web
     privileged: true

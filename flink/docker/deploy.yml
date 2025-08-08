@@ -1,7 +1,7 @@
 version: "3.9"
 
 x-flink-common: &flink-common
-  image: registry.czy21-internal.com/library/flink
+  image: registry.czy21.com/library/flink
   privileged: true
   user: root
   pull_policy: always

@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   open-webui:
-    image: "registry-proxy.czy21-internal.com/open-webui/open-webui:main" # ghcr.io/open-webui/open-webui:main
+    image: "registry-proxy.czy21.com/open-webui/open-webui:main" # ghcr.io/open-webui/open-webui:main
     container_name: open-webui
     hostname: open-webui
     labels:

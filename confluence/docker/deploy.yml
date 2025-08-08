@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   confluence:
-    image: registry.czy21-internal.com/library/confluence
+    image: registry.czy21.com/library/confluence
     container_name: confluence
     privileged: true
     user: root

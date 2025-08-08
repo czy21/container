@@ -8,7 +8,7 @@ x-traefik-label: &traefik-label
 services:
 
   cadvisor:
-    image: 'registry-proxy.czy21-internal.com/cadvisor/cadvisor:v0.47.2' # gcr.io/cadvisor/cadvisor:v0.47.2
+    image: 'registry-proxy.czy21.com/cadvisor/cadvisor:v0.47.2' # gcr.io/cadvisor/cadvisor:v0.47.2
     container_name: cadvisor
     labels:
       <<: *traefik-label
