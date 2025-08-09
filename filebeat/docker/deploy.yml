@@ -12,7 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /volume5/docker-root/containers/:/var/lib/docker/containers:ro
     environment:
-      ELASTICSEARCH_HOSTS: "es.czy21-internal.com:80"
+      ELASTICSEARCH_HOSTS: "es.czy21.com:80"
       ELASTICSEARCH_USERNAME: "<username>"
       ELASTICSEARCH_PASSWORD: "<secret_value>"
     restart: always
