@@ -30,9 +30,7 @@ entryPoints:
       
   traefik:
     address: :8080
-  metrics:
-    address: :8082
 
 metrics:
   prometheus:
-    entryPoint: metrics
+    entryPoint: web
