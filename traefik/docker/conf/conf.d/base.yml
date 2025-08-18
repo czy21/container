@@ -1,8 +1,5 @@
 http:
   routers:
-    metrics:
-      rule: Host(`traefik-.czy21-internal.com`) && PathPrefix(`/metrics`)
-      service: prometheus@internal
     traefik:
       rule: Host(`traefik-.czy21-internal.com`)
       service: traefik@docker
