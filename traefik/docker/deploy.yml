@@ -19,6 +19,8 @@ services:
       - "8080"
     ports:
       - "8080:80"
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
     volumes:
       - /volume5/storage/docker-data/traefik/conf/traefik.yml:/etc/traefik/traefik.yml
       - /volume5/storage/docker-data/traefik/conf/conf.d/:/etc/traefik/conf.d/
