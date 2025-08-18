@@ -20,3 +20,15 @@ services:
       - /volume5/storage/docker-data/nginx/conf/cert/:/etc/nginx/cert/
       - /volume5/storage/docker-data/nginx/conf/static/:/usr/share/nginx/static/
     restart: always
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.4.2
+    container_name: nginx-exporter
+    labels:
+      <<: *traefik-exporter-label
+    expose:
+      - "9113"
+    extra_hosts: 
+      - host.docker.internal:host-gateway
+    command: --nginx.scrape-uri=http://host.docker.internal:81/stub_status
+    restart: always
