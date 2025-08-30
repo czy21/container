@@ -1,0 +1,20 @@
+web:
+  host: 0.0.0.0
+models:
+  mysql:
+    compress_with:
+      type: tgz
+    storages:
+      local:
+        type: local
+        keep: 20
+        path: /root/backup/mysql
+    databases:
+      demo:
+        database: demo
+        type: mysql
+        host: <db_host>
+        port: 3306
+        username: <username>
+        password: <secret_value>
+        args: --skip-ssl

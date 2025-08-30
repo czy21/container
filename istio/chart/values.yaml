@@ -1,0 +1,18 @@
+istiod:
+  pilot:
+    env:
+      PILOT_HTTP10: true
+component:
+  jaeger: true
+  kiali: true
+
+kiali-server:
+  auth:
+    strategy: anonymous
+  deployment:
+    image_name: kiali/kiali # quay.io/kiali/kiali
+  external_services:
+    prometheus:
+      url: http://prometheus.ops.svc:9090
+    grafana:
+      enable: false

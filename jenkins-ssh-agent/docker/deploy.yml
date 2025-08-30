@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+
+  jenkins-ssh-agent:
+    image: "registry.czy21.com/library/jenkins-ssh-agent:7.13.0-jdk21"
+    pull_policy: always
+    container_name: jenkins-ssh-agent
+    privileged: true
+    ports:
+      - "5022:22"
+    volumes:
+      - /volume5/storage/docker-data/jenkins-ssh-agent/data/:/home/jenkins/
+      - /volume5/storage/docker-data/jenkins-ssh-agent/data/.jenkins:/home/jenkins/.jenkins
+      - /volume5/storage/docker-data/jenkins-ssh-agent/data/agent:/home/jenkins/agent
+      - /volume5/storage/docker-data/docker/conf/certs/:/docker-certs/client:ro
+      - /run/:/run/
+      - /var/run/:/var/run/
+      - /tmp/:/tmp/
+    environment:
+      JENKINS_AGENT_SSH_PUBKEY: "<secret_value>"
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_CERT_PATH: /docker-certs/client
+      DOCKER_TLS_VERIFY: 1
+    restart: always

@@ -1,0 +1,68 @@
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-filerealm
+  namespace: {{ .Release.Namespace }}
+stringData:
+  users: '{{ htpasswd .Values.param_db_es_username .Values.param_db_es_password }}'
+  users_roles: superuser:admin
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  version: {{ .Values.version }}
+  auth:
+    fileRealm:
+      - secretName: {{ .Release.Name }}-filerealm
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  volumeClaimDeletePolicy: DeleteOnScaledownOnly
+  nodeSets:
+    - name: default
+      count: 2
+      config:
+        node.store.allow_mmap: false
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              image: {{ .Values.param_registry_proxy_url | default "docker.elastic.co" }}/elasticsearch/elasticsearch:{{ .Values.version }}
+              securityContext:
+                capabilities:
+                  add: ["SYS_CHROOT"]
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 50Gi
+
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  version: {{ .Values.version }}
+  count: 1
+  elasticsearchRef:
+    name: {{ .Release.Name }}
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          image: {{ .Values.param_registry_proxy_url | default "docker.elastic.co" }}/kibana/kibana:{{ .Values.version }}
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true

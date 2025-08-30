@@ -1,0 +1,97 @@
+version: "3.9"
+
+x-kafka-common: &kafka-common
+  image: apache/kafka:3.8.0
+  privileged: true
+  user: root
+  pull_policy: always
+  restart: always
+
+services:
+  kafka-1:
+    <<: *kafka-common
+    container_name: kafka-1
+    hostname: kafka-1
+    ports:
+      - 9092:9092
+    volumes:
+      - /volume5/storage/docker-data/kafka/conf/1/:/mnt/shared/config/
+      - /volume5/storage/docker-data/kafka/secrets/1/:/etc/kafka/secrets/
+      - /volume5/storage/docker-data/kafka/data/1/:/var/lib/kafka/data/
+      - /volume5/storage/docker-data/kafka/logs/1/:/logs/
+    environment:
+      CLUSTER_ID: cluster1
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_LISTENERS: PLAINTEXT://:19092,CONTROLLER://:9093,PLAINTEXT_HOST://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:19092,PLAINTEXT_HOST://192.168.20.18:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: /logs/
+      KAFKA_LOG_RETENTION_HOURS: 720
+      KAFKA_LOG_ROLL_HOURS: 4
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+  kafka-2:
+    <<: *kafka-common
+    container_name: kafka-2
+    hostname: kafka-2
+    ports:
+      - 9093:9092
+    volumes:
+      - /volume5/storage/docker-data/kafka/conf/2/:/mnt/shared/config/
+      - /volume5/storage/docker-data/kafka/secrets/2/:/etc/kafka/secrets/
+      - /volume5/storage/docker-data/kafka/data/2/:/var/lib/kafka/data/
+      - /volume5/storage/docker-data/kafka/logs/2/:/logs/
+    environment:
+      CLUSTER_ID: cluster1
+      KAFKA_NODE_ID: 2
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_LISTENERS: PLAINTEXT://:19092,CONTROLLER://:9093,PLAINTEXT_HOST://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:19092,PLAINTEXT_HOST://192.168.20.18:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: /logs/
+      KAFKA_LOG_RETENTION_HOURS: 720
+      KAFKA_LOG_ROLL_HOURS: 4
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+  kafka-3:
+    <<: *kafka-common
+    container_name: kafka-3
+    hostname: kafka-3
+    ports:
+      - 9094:9092
+    volumes:
+      - /volume5/storage/docker-data/kafka/conf/3/:/mnt/shared/config/
+      - /volume5/storage/docker-data/kafka/secrets/3/:/etc/kafka/secrets/
+      - /volume5/storage/docker-data/kafka/data/3/:/var/lib/kafka/data/
+      - /volume5/storage/docker-data/kafka/logs/3/:/logs/
+    environment:
+      CLUSTER_ID: cluster1
+      KAFKA_NODE_ID: 3
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+      KAFKA_LISTENERS: PLAINTEXT://:19092,CONTROLLER://:9093,PLAINTEXT_HOST://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:19092,PLAINTEXT_HOST://192.168.20.18:9094
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: /logs/
+      KAFKA_LOG_RETENTION_HOURS: 720
+      KAFKA_LOG_ROLL_HOURS: 4
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824

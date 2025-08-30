@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    helm.sh/revision: "{{ .Release.Revision }}"
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  type: ClusterIP
+  ports:
+    - name: "http"
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    helm.sh/revision: "{{ .Release.Revision }}"
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        helm.sh/revision: "{{ .Release.Revision }}"
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: conf
+          configMap:
+            name: {{ .Release.Name }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.param_data_claim_name }}
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.param_registry_repo }}/{{ .Values.param_registry_dir }}/{{ .Release.Name }}:{{ .Values.param_release_version }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: APP_ARGS
+              value: {{ .Values.param_app_args }}
+          volumeMounts:
+            - name: conf
+              mountPath: /app/conf/
+            - name: data
+              mountPath: /app/data/
+              subPath: data

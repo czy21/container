@@ -1,0 +1,32 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  name: Home
+  latitude: 45.80
+  longitude: 126.54
+  time_zone: Asia/Shanghai
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 0.0.0.0/0
+
+recorder:
+  db_url: postgresql://postgres:<secret_value>@<db_host>:5432/homeassistant
+  purge_keep_days: 180
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# logger:
+#   default: info
+#   logs: 
+#     custom_components.xiaomi_miot: debug
+
+automation: !include automations.yaml
+sensor: !include sensor.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

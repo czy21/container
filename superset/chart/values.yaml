@@ -1,0 +1,14 @@
+superset:
+  supersetNode:
+    connections:
+      redis_host: "192.168.20.2"
+      redis_port: "6379"
+      db_host: "<db_host>"
+      db_port: "5432"
+      db_user: postgres
+      db_pass: <secret_value>
+      db_name: superset
+  postgresql:
+    enabled: false
+  redis:
+    enabled: false

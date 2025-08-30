@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: '{{ .Release.Name }}-hs'
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.param_registry_url }}/{{ .Values.param_registry_dir }}/kafka
+          imagePullPolicy: Always
+          args:
+            - "--override broker.id=${HOSTNAME##*-} \
+               --override zookeeper.connect={{ .Values.param_db_zk_connect }} \
+               --override host.name=$(POD_NAME).{{ .Release.Name }}-hs.{{ .Release.Namespace }}.svc.cluster.local \
+               --override listeners=PLAINTEXT://:9092 \
+               --override advertised.listeners=PLAINTEXT://$(POD_NAME).{{ .Release.Name }}-hs.{{ .Release.Namespace }}.svc.cluster.local:9092"
+          ports:
+            - containerPort: 9092
+          env: 
+           - name: POD_NAME
+             valueFrom:
+               fieldRef:
+                 fieldPath: metadata.name
+           - name: JMX_PORT
+             value: "9999"
+          volumeMounts:
+            - name: data
+              mountPath: /opt/kafka/logs/
+              subPath: logs
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 256Gi
+

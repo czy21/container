@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: dbconfig
+          configMap:
+            name: {{ .Release.Name }}
+            items:
+              - key: dbconfig.xml
+                path: dbconfig.xml
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.param_registry_url }}/{{ .Values.param_registry_dir }}/jira
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 2Gi
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        volumeMounts:
+        - name: data
+          mountPath: /var/atlassian/jira/
+        - name: dbconfig
+          mountPath: /var/atlassian/jira/dbconfig.xml
+          subPath: dbconfig.xml
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 256Gi
+

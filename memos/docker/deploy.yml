@@ -1,0 +1,22 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.memos.service: memos
+  traefik.http.services.memos.loadbalancer.server.port: 5230
+
+services:
+
+  memos:
+    image: neosmemo/memos:stable
+    container_name: memos
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    volumes:
+      - /volume5/storage/docker-data/memos/data/:/var/opt/memos
+    environment:
+      MEMOS_DRIVER: mysql
+      MEMOS_DSN: '<username>:<secret_value>@tcp(<db_host>:3306)/memos?charset=utf8mb4&parseTime=True&loc=Local'
+    restart: always

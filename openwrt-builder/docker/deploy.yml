@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  openwrt-builder:
+    image: registry.czy21.com/library/openwrt-builder
+    pull_policy: always
+    container_name: openwrt-builder
+    hostname: openwrt-builder
+    tty: true
+    volumes:
+      - /volume5/storage/docker-data/openwrt-builder/data/:/data/
+    restart: always

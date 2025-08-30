@@ -1,0 +1,32 @@
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    defaultRule: ""
+  file:
+    directory: /etc/traefik/conf.d/
+    watch: true
+
+log:
+  level: ERROR # DEBUG, PANIC, FATAL, ERROR, WARN, INFO
+  filePath: /dev/stdout
+
+accessLog:
+  filePath: /dev/stdout
+
+api:
+  insecure: true
+  dashboard: true
+
+entryPoints:
+  web:
+    address: :80
+    forwardedHeaders:
+      insecure: true
+      
+  traefik:
+    address: :8080
+
+metrics:
+  prometheus:
+    entryPoint: traefik

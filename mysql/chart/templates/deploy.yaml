@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: conf
+          configMap:
+            name: {{ .Release.Name }}
+            items:
+            - key: mysql.cnf
+              path: mysql.cnf
+      containers:
+        - name: {{ .Release.Name }}
+          image: mysql:8.0
+          resources:
+            limits:
+              memory: 4Gi
+          ports:
+            - containerPort: 3306
+          args:
+            - --default-authentication-plugin=mysql_native_password
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: '{{ .Values.param_db_password }}'
+          volumeMounts:
+            - name: conf
+              mountPath: /etc/mysql/conf.d/
+            - name: data
+              mountPath: /var/lib/mysql/
+        # - name: mysqld-exporter
+        #   image: prom/mysqld-exporter
+        #   ports:
+        #     - containerPort: 9104
+        #   env:
+        #     - name: DATA_SOURCE_NAME
+        #       value: 'root:{{ .Values.param_db_password }}@({{ .Values.param_db_mysql_host }}:{{ .Values.param_db_mysql_port }})/'
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 256Gi
+

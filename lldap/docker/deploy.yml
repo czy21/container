@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+
+  lldap:
+    image: lldap/lldap:stable
+    container_name: lldap
+    privileged: true
+    user: root
+    ports:
+      # For LDAP, not recommended to expose, see Usage section.
+      - "3890:3890"
+      # For LDAPS (LDAP Over SSL), enable port if LLDAP_LDAPS_OPTIONS__ENABLED set true, look env below
+      - "6360:6360"
+      # For the web front-end
+      - "17170:17170"
+    volumes:
+      - "/volume5/storage/docker-data/lldap/data/:/data/"
+    environment:
+      TZ: Asia/ShangHai
+      LLDAP_JWT_SECRET: <secret_value>
+      LLDAP_KEY_SEED: <secret_value>
+      LLDAP_FORCE_UPDATE_PRIVATE_KEY: "false"
+      LLDAP_FORCE_LDAP_USER_PASS_RESET: "false"
+      LLDAP_LDAP_BASE_DN: dc=czy21,dc=com
+      LLDAP_LDAP_USER_PASS: <secret_value>
+      LLDAP_DATABASE_URL: mysql://<username>:<secret_value>@<db_host>:3306/lldap
+    restart: always

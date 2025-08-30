@@ -1,0 +1,13 @@
+web:
+  port: 3000
+  dist: /app/dist
+server:
+  port: 8080
+
+db:
+  driver-name: mysql
+  url: <username>:<secret_value>@tcp(<db_host>:3306)/go-pulsar-manager?charset=utf8mb4&parseTime=True
+
+log:
+#  file: /app/log/app.log # if removed,log in console
+  level: info # info,debug,error

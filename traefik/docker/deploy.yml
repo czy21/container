@@ -1,0 +1,28 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.traefik.service: traefik
+  traefik.http.services.traefik.loadbalancer.server.port: 8080
+
+services:
+
+  traefik:
+    image: traefik:v3.6.5
+    container_name: traefik
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    expose:
+      - "80"
+      - "8080"
+    ports:
+      - "8080:80"
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /volume5/storage/docker-data/traefik/conf/traefik.yml:/etc/traefik/traefik.yml
+      - /volume5/storage/docker-data/traefik/conf/conf.d/:/etc/traefik/conf.d/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: always
