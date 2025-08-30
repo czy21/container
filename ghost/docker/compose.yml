@@ -1,0 +1,27 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.ghost.service: ghost
+  traefik.http.services.ghost.loadbalancer.server.port: 2368
+
+services:
+  ghost:
+    image: ghost:5.58.0
+    container_name: ghost
+    hostname: ghost
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    expose:
+      - "2368"
+    volumes:
+      - /volume1/storage/docker-data/ghost/data/:/var/lib/ghost/content/
+    environment:
+      database__client: mysql
+      database__connection__host: "db.czy21.com"
+      database__connection__user: "admin"
+      database__connection__password: "Czy.190815"
+      database__connection__database: ghost
+    restart: always

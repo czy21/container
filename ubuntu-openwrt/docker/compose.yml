@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  ubuntu-openwrt:
+    image: registry.czy21.com/library/ubuntu-openwrt
+    container_name: ubuntu-openwrt
+    build:
+      context: /home/bruce/script-docker/os/ubuntu-openwrt/build/output
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - /volume5/storage/docker-data/ubuntu-openwrt/data/:/data/
+    restart: always

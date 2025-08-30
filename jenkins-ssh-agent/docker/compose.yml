@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  jenkins-ssh-agent:
+    image: "registry.czy21.com/library/jenkins-ssh-agent:8.1.0-jdk21"
+    container_name: jenkins-ssh-agent
+    build:
+      context: /home/bruce/script-docker/ops/jenkins-ssh-agent/build/output
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "5022:22"
+    volumes:
+      - /volume1/storage/docker-data/jenkins-ssh-agent/data/:/home/jenkins/
+      - /volume1/storage/docker-data/jenkins-ssh-agent/data/.jenkins:/home/jenkins/.jenkins
+      - /volume1/storage/docker-data/jenkins-ssh-agent/data/agent:/home/jenkins/agent
+      - /volume1/storage/docker-data/docker/conf/certs/:/docker-certs/client:ro
+      - /run/:/run/
+      - /var/run/:/var/run/
+      - /tmp/:/tmp/
+    environment:
+      JENKINS_AGENT_SSH_PUBKEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqXf1beJRn9eKnahd9YwemECQsnmNJf5g/sabhk1LdgB4oYgP0pfc0dhjKcfgo0w9R4d4nN7L7dpTxc3rbTUJ7LJwZ9jcJ2wZjDu5s/IA5kP72XdDt9WEs87OLhMyHV3YIo1EFQT85/vuJ631gwGQnkGtu4XUj5sxVxeAD9GS+2b/z99fU/qxL/Ri1eQPjF+DdtanUSjpG13OantgYHpaYQlypkBkiVh8Mp8pW1/AP/4XrpA5VjrN1RfcDBxYnSydQwo86Z3BDlEPb8uXWnMN3g0n4fyrfpyPtlw/ohyCbCgbP6SDunJoiijxP0sqnx1ZMUXzt5QUW+ZhAMIVZaUFrjtiKQ861Lhm9XxYpymRr6kQsJ+QthyNZw0twTSMlT65/Q728IcCCjm4FkWmDwmZbZTkyRY+9fEDjDxYzt2IrrnVbitdqysXQ/JkG41CyixHVxWHcdgIy5KQZcQx0VmqG9vj73RxAf4+wUZtlZ+g0N9haWfAWBCqGWaYx6j6LMchaEPiqAezdALPxSu1lieXeeEsO0oRa/FWY+JMUdR9UwAfqzRu7nHrNAofGGc8RwWJ5NwN3aRwW6W1zEoWayxf8fO3nluT52CkVBf0VyJVhCKaMOzI+fQDq/vapEIvNSSJ6oa66GbEBV3cx0fpcw1bQyD6P8om4HELdkwF5bOHX0w== 805899926@qq.com"
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_CERT_PATH: /docker-certs/client
+      DOCKER_TLS_VERIFY: 1
+    restart: always

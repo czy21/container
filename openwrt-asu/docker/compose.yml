@@ -1,0 +1,30 @@
+
+
+services:
+  server:
+    image: "docker.io/openwrt/asu:latest"
+    command: uv run uvicorn --host 0.0.0.0 --reload --reload-include asu.toml asu.main:app
+    volumes:
+      - /volume1/storage/docker-data/openwrt-asu/conf/asu.toml:/app/asu.toml:ro
+      - /volume1/storage/docker-data/openwrt-asu/data/public/store:/public/store:ro
+    env_file: /home/bruce/script-docker/os/openwrt-asu/build/output/.env
+    ports:
+      - "8000:8000"
+    restart: always
+
+  worker:
+    image: "docker.io/openwrt/asu:latest"
+    command: uv run rqworker --logging_level INFO
+    volumes:
+      - /volume1/storage/docker-data/openwrt-asu/conf/asu.toml:/app/asu.toml:ro
+      - /volume1/storage/docker-data/openwrt-asu/data/public:/public:rw
+      - /run/user/1000/podman/podman.sock:/var/podman.sock:rw
+    env_file: /home/bruce/script-docker/os/openwrt-asu/build/output/.env
+    restart: always
+    deploy:
+      replicas: 3
+      
+networks:
+  default:
+    name: asu-build
+    external: true

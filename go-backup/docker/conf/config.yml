@@ -1,0 +1,20 @@
+web:
+  host: 0.0.0.0
+models:
+  mysql:
+    compress_with:
+      type: tgz
+    storages:
+      local:
+        type: local
+        keep: 20
+        path: /root/backup/mysql
+    databases:
+      demo:
+        database: demo
+        type: mysql
+        host: db.czy21.com
+        port: 3306
+        username: admin
+        password: Czy.190815
+        args: --skip-ssl

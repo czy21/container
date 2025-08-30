@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  openwrt-buildbot:
+    image: openwrt/imagebuilder:x86-64
+    container_name: openwrt-buildbot
+    tty: true
+    volumes:
+      - /volume5/storage/docker-data/openwrt-buildbot/:/builder/
+    restart: always

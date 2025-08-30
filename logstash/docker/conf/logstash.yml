@@ -1,0 +1,6 @@
+http.host: "0.0.0.0"
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: [ "http://es.czy21.com:80" ]
+xpack.monitoring.elasticsearch.username: admin
+xpack.monitoring.elasticsearch.password: Czy.190815
+pipeline.ecs_compatibility: disabled
