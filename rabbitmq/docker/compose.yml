@@ -1,0 +1,29 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.rabbitmq.service: rabbitmq
+  traefik.http.services.rabbitmq.loadbalancer.server.port: 15672
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.11.16-management-alpine
+    container_name: rabbitmq
+    privileged: true
+    user: root
+    expose:
+      - "5672"
+      - "15672"
+      - "1883"
+    labels:
+      <<: *traefik-label
+    ports:
+      - "5672:5672"
+      - "1883:1883"
+    volumes:
+      - /volume5/storage/docker-data/rabbitmq/conf/enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - /volume5/storage/docker-data/rabbitmq/data/:/var/lib/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: "<secret_value>"
+    restart: always

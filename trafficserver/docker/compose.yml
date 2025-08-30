@@ -1,0 +1,17 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.trafficserver.service: trafficserver
+  traefik.http.services.trafficserver.loadbalancer.server.port: 8080
+
+services:
+
+  trafficserver:
+    image: trafficserver/trafficserver:10.1.2
+    container_name: trafficserver
+    labels:
+      <<: *traefik-label
+    # volumes:
+    #   - /volume5/storage/docker-data/trafficserver/conf/:/opt/etc/trafficserver
+    restart: always

@@ -1,0 +1,17 @@
+
+services:
+
+  gitea-runner:
+    image: gitea/runner:3.3.1
+    container_name: gitea-runner
+    privileged: true
+    user: root
+    volumes:
+      - /volume5/storage/docker-data/gitea-runner/data/:/data/
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: Asia/Shanghai
+      GITEA_INSTANCE_URL: "https://gitea.czy21.com:8443/"
+      GITEA_RUNNER_REGISTRATION_TOKEN: "<secret_value>"
+      GITEA_RUNNER_NAME: ""
+    restart: always

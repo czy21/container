@@ -1,0 +1,14 @@
+server:
+  host: "0.0.0.0"
+
+monitoring:
+  ui:
+    container:
+      elasticsearch:
+        enabled: true
+
+elasticsearch:
+  hosts: 
+    - http://es-1-1:9200
+  username: <username>
+  password: <secret_value>

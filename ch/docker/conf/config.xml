@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<yandex>
+    <listen_host>0.0.0.0</listen_host>
+    <mysql_port>9004</mysql_port>
+    <remote_servers>
+        <ch-1>
+            <shard>
+                <replica>
+                    <host>ch-1-1</host>
+                    <port>9000</port>
+                    <user><username></user>
+                    <password><secret_value></password>
+                </replica>
+            </shard>
+            <shard>
+                <replica>
+                    <host>ch-1-2</host>
+                    <port>9000</port>
+                    <user><username></user>
+                    <password><secret_value></password>
+                </replica>
+            </shard>
+        </ch-1>
+    </remote_servers>
+
+    <zookeeper>
+        <node index="1">
+            <host><db_host></host>
+            <port>2181</port>
+        </node>
+    </zookeeper>
+
+    <networks>
+        <ip>::/0</ip>
+    </networks>
+
+    <macros>
+        <shard>01</shard>
+        <replica>ch-1-1</replica>
+    </macros>
+
+    <clickhouse_compression>
+        <case>
+            <min_part_size>10000000000</min_part_size>
+            <min_part_size_ratio>0.01</min_part_size_ratio>
+            <method>lz4</method>
+        </case>
+    </clickhouse_compression>
+
+</yandex>

@@ -1,0 +1,42 @@
+pulsar:
+  initialize: true
+  affinity:
+    anti_affinity: false
+  images:
+    pulsar_manager:
+      repository: apachepulsar/pulsar-manager
+      tag: v0.2.0
+  components:
+    proxy: true
+    pulsar_manager: true
+    functions: false
+    zookeeper: false
+  monitoring:
+    prometheus: false
+    grafana: false
+    node_exporter: false
+    alert_manager: false
+  bookkeeper:
+    restartPodsOnConfigMapChange: true
+    replicaCount: 2
+    volumes:
+      journal:
+        size: 10Gi
+      ledgers:
+        size: 50Gi
+  broker:
+    restartPodsOnConfigMapChange: true
+    replicaCount: 2
+    configData:
+      brokerDeleteInactiveTopicsEnabled: "false"
+  proxy:
+    restartPodsOnConfigMapChange: true
+    replicaCount: 2
+  pulsar_metadata:
+    component: init
+    userProvidedZookeepers: 192.168.20.18:2181,192.168.20.18:2182,192.168.20.18:2183/pulsar/cluster1 # need manual create zk path
+  pulsar_manager:
+    component: manager
+    configData:
+      DRIVER_CLASS_NAME: org.postgresql.Driver
+      URL: jdbc:postgresql://<db_host>:5432/pulsar_manager?user=postgres&password=<secret_value>

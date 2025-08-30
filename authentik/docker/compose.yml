@@ -1,0 +1,41 @@
+
+x-authentik-common: &authentik-common
+  image: authentik/server:2026.8.0
+  privileged: true
+  user: root
+  environment:
+    AUTHENTIK_POSTGRESQL__NAME: authentik
+    AUTHENTIK_POSTGRESQL__HOST: <db_host>
+    AUTHENTIK_POSTGRESQL__PORT: 5432
+    AUTHENTIK_POSTGRESQL__USER: postgres
+    AUTHENTIK_POSTGRESQL__PASSWORD: <secret_value>
+    AUTHENTIK_SECRET_KEY: <secret_value>
+    AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE: authentik/%(type)s:%(version)s
+  restart: always
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.authentik.service: authentik
+  traefik.http.services.authentik.loadbalancer.server.port: 9000
+
+services:
+  authentik-server:
+    <<: *authentik-common
+    container_name: authentik-server
+    labels:
+      <<: *traefik-label
+    ports:
+      - "9000:9000"
+    volumes:
+      - /volume5/storage/docker-data/authentik/conf/templates:/templates
+      - /volume5/storage/docker-data/authentik/data/:/data
+    command: server
+
+  authentik-worker:
+    <<: *authentik-common
+    container_name: authentik-worker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /volume5/storage/docker-data/authentik/conf/templates:/templates
+      - /volume5/storage/docker-data/authentik/data/:/data
+    command: worker

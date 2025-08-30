@@ -1,0 +1,25 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.onedev.service: onedev
+  traefik.http.services.onedev.loadbalancer.server.port: 6610
+
+services:
+  onedev:
+    image: 1dev/server:10.3.1
+    pull_policy: always
+    container_name: onedev
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    volumes:
+      - /volume5/storage/docker-data/onedev/data/:/opt/onedev
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      initial_user: "<username>"
+      initial_password: "<secret_value>"
+      initial_email: 805899926@qq.com
+      initial_server_url: http://onedev.czy21-internal.com
+    restart: always

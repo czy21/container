@@ -1,0 +1,36 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.concourse.service: concourse
+  traefik.http.services.concourse.loadbalancer.server.port: 8080
+
+services:
+
+  concourse:
+    image: concourse/concourse:7.10
+    container_name: concourse
+    hostname: concourse
+    labels:
+      <<: *traefik-label
+    expose:
+      - "8080"
+      - "2222"
+    ports:
+      - "2224:2222"
+    volumes:
+      - /volume5/storage/docker-data/concourse/conf/keys/:/concourse-keys/
+      - /volume5/storage/docker-data/concourse/data/worker-state/:/worker-state/
+    environment:
+      CONCOURSE_EXTERNAL_URL: "http://concourse.czy21-internal.com:80"
+      CONCOURSE_POSTGRES_HOST: "<db_host>"
+      CONCOURSE_POSTGRES_USER: "postgres"
+      CONCOURSE_POSTGRES_PASSWORD: "<secret_value>"
+      CONCOURSE_POSTGRES_DATABASE: concourse
+      CONCOURSE_ADD_LOCAL_USER: "<username>:<secret_value>"
+      CONCOURSE_MAIN_TEAM_LOCAL_USER: "<username>"
+      CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
+      CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key
+      CONCOURSE_TSA_AUTHORIZED_KEYS: /concourse-keys/authorized_worker_keys
+    command: web
+    restart: always

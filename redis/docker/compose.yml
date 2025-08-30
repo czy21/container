@@ -1,0 +1,45 @@
+version: "3.9"
+
+x-redis-common: &redis-common
+  image: redis/redis-stack-server:6.2.6-v10
+  privileged: true
+  user: root
+  environment:
+    TZ: Asia/Shanghai
+  restart: always
+
+x-redis-exporter-common: &redis-exporter-common
+  image: oliver006/redis_exporter:v1.62.0-alpine
+
+x-traefik-exporter-label: &traefik-exporter-label
+  traefik.enable: true
+  traefik.http.routers.redis-exporter.service: redis-exporter
+  traefik.http.services.redis-exporter.loadbalancer.server.port: 9121
+
+services:
+  redis:
+    <<: *redis-common
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /volume5/storage/docker-data/redis/data/single/:/data/
+    environment:
+      REDIS_ARGS: |-
+        --requirepass <secret_value>
+        --appendonly yes
+        --ignore-warnings ARM64-COW-BUG
+  redis-exporter-6379:
+    <<: *redis-exporter-common
+    labels:
+      <<: *traefik-exporter-label
+    container_name: redis-exporter-6379
+    user: root
+    expose:
+      - "9121"
+    command:
+      - --redis.addr=redis://redis:6379
+      - --redis.password=<secret_value>
+    environment:
+      REDIS_EXPORTER_IS_CLUSTER: "false"
+    restart: always
