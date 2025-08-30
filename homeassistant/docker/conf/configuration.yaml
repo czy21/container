@@ -1,0 +1,23 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 0.0.0.0/0
+
+# logger:
+#   default: info
+#   logs: 
+#     custom_components.xiaomi_miot: debug
+
+recorder: !include recorder.yaml
+automation: !include automation.yaml
+command_line: !include command_line.yaml
+sensor: !include sensor.yaml
+script: !include script.yaml
+scene: !include scene.yaml
+shell_command: !include shell_command.yaml
+homekit: !include homekit.yaml
+remote_homeassistant: !include remote_homeassistant.yaml

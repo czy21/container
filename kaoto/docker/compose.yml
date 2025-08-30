@@ -1,0 +1,17 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.kaoto.service: kaoto
+  traefik.http.services.kaoto.loadbalancer.server.port: 8080
+
+services:
+
+  kaoto:
+    image: kaotoio/kaoto-app:2.3.0 # quay.io/kaotoio/kaoto-app:2.3.0
+    container_name: kaoto
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    restart: always

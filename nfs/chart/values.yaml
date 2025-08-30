@@ -1,0 +1,9 @@
+nfs-subdir-external-provisioner:
+  replicaCount: 1
+
+  storageClass:
+    name: nfs
+    defaultClass: true
+  nfs:
+    server: 192.168.20.18
+    path: /export/kube-
