@@ -1,0 +1,24 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.services.openwrt-web-firmware.loadbalancer.server.port: 8080
+  traefik.http.services.openwrt-web-download.loadbalancer.server.port: 8081
+
+services:
+
+  openwrt-web:
+    image: 'registry.czy21.com/library/openwrt-web'
+    pull_policy: always
+    container_name: openwrt-web
+    privileged: true
+    user: root
+    expose:
+      - "8080"
+      - "8081"
+    labels:
+      <<: *traefik-label
+    volumes:
+      - /volume5/storage/docker-data/openwrt-web/conf/conf.d/:/etc/nginx/conf.d/
+      - /volume1/openwrt/:/data/
+    restart: always

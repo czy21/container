@@ -1,0 +1,33 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.jenkins.service: jenkins
+  traefik.http.services.jenkins.loadbalancer.server.port: 8080
+
+services:
+
+  jenkins:
+    image: "registry.czy21.com/library/jenkins:2.549-jdk21"
+    pull_policy: always
+    container_name: jenkins
+    privileged: true
+    working_dir: /var/jenkins_home/
+    labels:
+      <<: *traefik-label
+    ports:
+      - "50000:50000"
+    volumes:
+      - /volume5/storage/docker-data/jenkins/conf/:/conf/
+      - /volume5/storage/docker-data/jenkins/data/:/var/jenkins_home/
+      - /volume5/storage/docker-data/docker/conf/certs/:/docker-certs/client:ro
+    environment:
+      JAVA_OPTS: "-Xverify:none -Dhudson.model.UpdateCenter.updateCenterUrl=https://nexus.czy21.com/repository/raw-hosted/jenkins/ -Dhudson.model.DownloadService.noSignatureCheck=true -Djava.util.logging.config.file=/conf/logging.properties"
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_CERT_PATH: /docker-certs/client
+      DOCKER_TLS_VERIFY: 1
+    deploy:
+      resources:
+        limits:
+          memory: 8g
+    restart: always
