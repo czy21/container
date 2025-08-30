@@ -1,0 +1,34 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 2
+  rabbitmq:
+    additionalConfig: |
+      default_user={{ .Values.param_mq_rabbit_username }}
+      default_pass={{ .Values.param_mq_rabbit_password }}
+    additionalPlugins:
+      - "rabbitmq_mqtt"
+  override:
+    service:
+      spec:
+        type: NodePort
+        ports:
+          - name: "5672"
+            port: 5672
+            targetPort: 5672
+            nodePort: 5672
+          - name: "15672"
+            port: 15672
+            targetPort: 15672
+            nodePort: 15672
+          - name: "15692"
+            port: 15692
+            targetPort: 15692
+            nodePort: 15692
+          - name: "1883"
+            port: 1883
+            targetPort: 1883
+            nodePort: 1883

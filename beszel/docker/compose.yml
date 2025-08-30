@@ -1,0 +1,18 @@
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.beszel.service: beszel
+  traefik.http.services.beszel.loadbalancer.server.port: 8090
+
+services:
+  beszel:
+    image: henrygd/beszel:0.19.0
+    container_name: beszel
+    labels:
+      <<: *traefik-label
+    volumes:
+      - /volume1/storage/docker-data/beszel/data/:/beszel_data/
+    environment:
+      APP_URL: "https://beszel.czy21.com"
+      USER_EMAIL: "805899926@qq.com"
+      USER_PASSWORD: "<secret_value>"
+    restart: always
