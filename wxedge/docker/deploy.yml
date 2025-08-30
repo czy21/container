@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+
+  wxedge:
+    image: images-cluster.xycloud.com/wxedge/wxedge:3.3.1
+    container_name: wxedge
+    network_mode: host
+    privileged: true
+    user: root
+    volumes:
+      - /volume5/storage/docker-data/wxedge/data/:/storage
+    tmpfs:
+      - /run
+      - /tmp
+    restart: always

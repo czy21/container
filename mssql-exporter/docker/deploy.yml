@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+
+  mssql_exporter:
+    image: awaragi/prometheus-mssql-exporter
+    container_name: mssql_exporter
+    ports:
+      - "4000:4000"
+    environment:
+      SERVER: <db_host>
+      PORT: 1433
+      USERNAME: sa
+      PASSWORD: <secret_value>
+      DEBUG: app
+
+    user: root

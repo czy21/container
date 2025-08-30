@@ -1,0 +1,16 @@
+tigera-operator:
+  tigeraOperator:
+    registry: registry-proxy.czy21.com
+  calicoctl:
+    image: 'registry-proxy.czy21.com/calico/ctl' # docker.io/calico/ctl
+  ## k3s use https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/multi-node-install
+  # installation:
+  #   calicoNetwork:
+  #     containerIPForwarding: Enabled
+  #     ipPools:
+  #       - name: default-ipv4-ippool
+  #         blockSize: 26
+  #         cidr: 10.2.0.0/16
+  #         encapsulation: VXLANCrossSubnet
+  #         natOutgoing: Enabled
+  #         nodeSelector: all()
