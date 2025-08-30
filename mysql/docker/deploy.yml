@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+
+  mysql:
+    image: mysql:8.0.43
+    container_name: mysql
+    privileged: true
+    user: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /volume5/storage/docker-data/mysql/data/:/var/lib/mysql/
+      - /volume5/storage/docker-data/mysql/conf/conf.d/:/etc/mysql/conf.d/
+    command: --default-authentication-plugin=caching_sha2_password 
+             --character-set-server=utf8mb4
+             --collation-server=utf8mb4_unicode_ci
+             --max_connections=10000
+             --transaction-isolation=READ-COMMITTED
+             --skip-log-bin
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ALLOW_EMPTY_PASSWORD: 0
+      MYSQL_ROOT_PASSWORD: "<secret_value>"
+    restart: always
+
+  mysql-exporter-3306:
+    image: prom/mysqld-exporter:v0.15.0
+    container_name: mysql-exporter-3306
+    command: --mysqld.address=mysql:3306 --mysqld.username=<username>
+    environment:
+      MYSQLD_EXPORTER_PASSWORD: <secret_value>
+    restart: always
