@@ -1,0 +1,39 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.bitwarden.service: bitwarden
+  traefik.http.services.bitwarden.loadbalancer.server.port: 8080
+
+services:
+
+  bitwarden:
+    image: ghcr.io/bitwarden/self-host:2025.10.0-beta
+    container_name: bitwarden
+    labels:
+      <<: *traefik-label
+    volumes:
+      - /volume5/storage/docker-data/bitwarden/data/:/etc/bitwarden/
+      - /volume5/storage/docker-data/bitwarden/logs/bitwarden/:/var/log/bitwarden/
+      - /volume5/storage/docker-data/bitwarden/logs/nginx/:/var/log/nginx/
+    environment:
+      PUID: 1000
+      PGID: 1000
+      BW_DOMAIN: bitwarden.czy21.com
+      BW_DB_PROVIDER: mysql
+      BW_DB_DATABASE: bitwarden_vault
+      BW_DB_SERVER: "<db_host>"
+      BW_DB_PORT: "3306"
+      BW_DB_USERNAME: "<username>"
+      BW_DB_PASSWORD: "<secret_value>"
+      BW_INSTALLATION_ID: 0cdbf50e-b964-4e05-a9b7-b1d80044fcba
+      BW_INSTALLATION_KEY: qEpXxKJiPjwETG4HmX2b
+      BW_REAL_IPS: 172.19.0.0/16,10.8.5.0/24
+      globalSettings__mail__replyToEmail: "805899926@qq.com"
+      globalSettings__mail__smtp__host: "smtp.qq.com"
+      globalSettings__mail__smtp__port: "587"
+      globalSettings__mail__smtp__ssl: true
+      globalSettings__mail__smtp__username: "805899926@qq.com"
+      globalSettings__mail__smtp__password: "<secret_value>"
+      adminSettings__admins: "805899926@qq.com"
+    restart: always
