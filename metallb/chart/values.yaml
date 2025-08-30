@@ -1,0 +1,11 @@
+metallb:
+  fullnameOverride: metallb
+  controller: 
+    image:
+      repository: "registry-proxy.czy21.com/metallb/controller" # quay.io/metallb/controller
+  speaker:
+    image:
+      repository: "registry-proxy.czy21.com/metallb/speaker" # quay.io/metallb/speaker
+    frr:
+      image:
+        repository: "registry-proxy.czy21.com/frrouting/frr" # quay.io/frrouting/frr

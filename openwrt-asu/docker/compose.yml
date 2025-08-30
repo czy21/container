@@ -1,0 +1,31 @@
+
+
+services:
+  server:
+    image: "docker.io/openwrt/asu:latest"
+    build:
+      context: /home/opsor/script-docker/os/openwrt-asu/build/output
+      dockerfile: Dockerfile
+    command: uv run uvicorn --host 0.0.0.0 asu.main:app
+    volumes:
+      - $PUBLIC_PATH/store:$PUBLIC_PATH/store:ro
+      - $CONFIG_PATH:$CONFIG_PATH:ro
+    ports:
+      - "8000:8000"
+    env_file: /home/opsor/script-docker/os/openwrt-asu/build/output/.env
+    restart: always
+
+  worker:
+    image: "docker.io/openwrt/asu:latest"
+    build:
+      context: /home/opsor/script-docker/os/openwrt-asu/build/output
+      dockerfile: Dockerfile
+    command: uv run rqworker --logging_level INFO
+    volumes:
+      - $PUBLIC_PATH:$PUBLIC_PATH:rw
+      - $CONFIG_PATH:$CONFIG_PATH:rw
+      - $CONTAINER_SOCKET_PATH:$CONTAINER_SOCKET_PATH:rw
+    env_file: /home/opsor/script-docker/os/openwrt-asu/build/output/.env
+    restart: always
+    deploy:
+      replicas: 3

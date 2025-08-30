@@ -1,0 +1,28 @@
+argo-workflows:
+  fullnameOverride: argo-workflows
+  crds:
+    upgradeJob:
+      image:
+        repository: 'registry-proxy.czy21.com/kubectl'
+  controller:
+    image:
+      registry: 'registry-proxy.czy21.com'
+    workflowNamespaces: []
+  server:
+    image:
+      registry: 'registry-proxy.czy21.com'
+  executor:
+    image:
+      registry: 'registry-proxy.czy21.com'
+  artifactRepository:
+    archiveLogs: true
+    s3: 
+      endpoint: "minio.czy21.com"
+      bucket: argo
+      keyFormat: "{{ workflow.uid }}"
+      accessKeySecret:
+        name: argo-artifact-credentials
+        key: accessKey
+      secretKeySecret:
+        name: argo-artifact-credentials
+        key: secretKey

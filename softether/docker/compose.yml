@@ -1,0 +1,14 @@
+
+services:
+  softethervpn-server:
+    image: softethervpn/vpnserver:5.2
+    container_name: softethervpn-server
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - /volume5/storage/docker-data/softether/data/:/var/lib/softether
+      - /volume5/storage/docker-data/softether/logs/:/var/log/softether
+    restart: always
