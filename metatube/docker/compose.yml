@@ -1,0 +1,17 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.metatube.service: metatube
+  traefik.http.services.metatube.loadbalancer.server.port: 8080
+
+services:
+  metatube:
+    image: "registry-proxy.czy21.com/metatube-community/metatube-server:1.2.3" # ghcr.io/metatube-community/metatube-server:1.2.3
+    container_name: metatube
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    command: -dsn "postgres://postgres:<secret_value>@<db_host>:5432/metatube" -port 8080 -db-auto-migrate -db-prepared-stmt
+    restart: always

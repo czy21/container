@@ -1,0 +1,25 @@
+version: "3.9"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.seata.service: seata
+  traefik.http.services.seata.loadbalancer.server.port: 7091
+
+services:
+
+  seata:
+    image: seataio/seata-server:2.0.0
+    pull_policy: always
+    container_name: "seata"
+    hostname: "seata"
+    privileged: true
+    user: root
+    labels:
+      <<: *traefik-label
+    ports:
+      - "7091:7091"
+      - "8091:8091"
+    volumes:
+      - /volume5/storage/docker-data/seata/conf/application.yml:/seata-server/resources/application.yml
+      - /volume5/storage/docker-data/seata/logs/:/logs/
+    restart: always
