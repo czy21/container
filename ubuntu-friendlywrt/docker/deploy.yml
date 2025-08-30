@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  ubuntu-friendlywrt:
+    image: registry.czy21.com/library/ubuntu-friendlywrt
+    pull_policy: always
+    container_name: ubuntu-friendlywrt
+    hostname: ubuntu-friendlywrt
+    user: opsor
+    tty: true
+    volumes:
+      - /volume5/storage/docker-data/ubuntu-friendlywrt/data/:/data/
+    restart: always

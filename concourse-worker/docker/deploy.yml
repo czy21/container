@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+
+  concourse-worker:
+    image: concourse/concourse:7.10
+    container_name: concourse-worker
+    hostname: concourse-worker
+    privileged: true
+    volumes:
+      - /volume5/storage/docker-data/concourse-worker/conf/keys/:/concourse-keys/
+      - /volume5/storage/docker-data/concourse-worker/data/worker-state/:/worker-state/
+    environment:
+      CONCOURSE_NAME: ""
+      CONCOURSE_RUNTIME: containerd
+      CONCOURSE_TSA_HOST: concourse.czy21-internal.com:2224
+      CONCOURSE_TSA_PUBLIC_KEY: /concourse-keys/tsa_host_key.pub
+      CONCOURSE_TSA_WORKER_PRIVATE_KEY: /concourse-keys/worker_key
+      CONCOURSE_BIND_IP: 0.0.0.0
+      CONCOURSE_BAGGAGECLAIM_BIND_IP: 0.0.0.0
+      CONCOURSE_BAGGAGECLAIM_DRIVER: overlay
+      CONCOURSE_CONTAINERD_DNS_SERVER: 192.168.20.2
+      CONCOURSE_GARDEN_DNS_PROXY_ENABLE: "true"
+      CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS: "true"
+    command: worker
+    restart: always
