@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+  docker:
+    image: "docker:29.2.1"
+    pull_policy: always
+    container_name: docker
+    hostname: docker
+    privileged: true
+    volumes:
+      - /volume5/storage/docker-data/docker/conf/daemon.json:/etc/docker/daemon.json
+      - /volume5/storage/docker-data/docker/conf/certs/:/certs/client
+      - /volume5/storage/docker-data/docker/data/:/var/lib/docker
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    tmpfs:
+      - /run
+      - /var/run
+    restart: always

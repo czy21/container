@@ -1,0 +1,121 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Release.Name }}-web'
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: '{{ .Release.Name }}-web'
+  template:
+    metadata:
+      labels:
+        app: '{{ .Release.Name }}-web'
+    spec:
+      volumes:
+      - name: conf
+        configMap:
+          name: '{{ .Release.Name }}-web'
+          items:
+          - key: system-config.properties
+            path: system-config.properties
+      containers:
+        - name: '{{ .Release.Name }}-web'
+          image: {{ .Values.param_registry_url }}/{{ .Values.param_registry_dir }}/kafka-web
+          args:
+          - /bin/bash
+          - -c
+          - 'ke.sh start;tail -f $KE_HOME/logs/ke_console.out'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+          - name: conf
+            mountPath: /opt/kafka-eagle/conf/
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ .Release.Name }}-web'
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: '{{ .Release.Name }}-web'
+data:
+  system-config.properties: |-
+    ######################################
+    # multi zookeeper & kafka cluster list
+    # Settings prefixed with 'kafka.eagle.' will be deprecated, use 'efak.' instead
+    ######################################
+    efak.zk.cluster.alias=cluster1,cluster2
+    cluster1.zk.list={{ .Values.param_db_zk_connect }}
+    cluster2.zk.list={{ .Values.param_db_zk_connect }}
+
+    ######################################
+    # zookeeper enable acl
+    ######################################
+    cluster1.zk.acl.enable=false
+    cluster1.zk.acl.schema=digest
+    cluster1.zk.acl.username=test
+    cluster1.zk.acl.password=test123
+
+    ######################################
+    # broker size online list
+    ######################################
+    cluster1.efak.broker.size=20
+
+    ######################################
+    # zk client thread limit
+    ######################################
+    kafka.zk.limit.size=32
+
+    ######################################
+    # EFAK webui port
+    ######################################
+    efak.webui.port=8080
+
+    ######################################
+    # kafka jmx acl and ssl authenticate
+    ######################################
+    cluster1.efak.jmx.acl=false
+    cluster1.efak.jmx.user=keadmin
+    cluster1.efak.jmx.password=keadmin123
+    cluster1.efak.jmx.ssl=false
+    cluster1.efak.jmx.truststore.location=/data/ssl/certificates/kafka.truststore
+    cluster1.efak.jmx.truststore.password=ke123456
+
+    ######################################
+    # kafka offset storage
+    ######################################
+    cluster1.efak.offset.storage=kafka
+    cluster2.efak.offset.storage=zk
+
+    ######################################
+    # kafka jmx uri
+    ######################################
+    cluster1.efak.jmx.uri=service:jmx:rmi:///jndi/rmi://%s/jmxrmi
+
+    ######################################
+    # kafka metrics, 15 days by default
+    ######################################
+    efak.metrics.charts=true
+    efak.metrics.retain=15
+
+    ######################################
+    # kafka sql topic records max
+    ######################################
+    efak.sql.topic.records.max=5000
+    efak.sql.topic.preview.records.max=10
+
+    ######################################
+    # delete kafka topic token
+    ######################################
+    efak.topic.token=54d41d54-7c84-43cd-a768-44d217c0cd4c
+
+    ######################################
+    # kafka mysql jdbc driver address
+    ######################################
+    efak.driver=com.mysql.cj.jdbc.Driver
+    efak.url=jdbc:mysql://{{ .Values.param_db_mysql_host }}:{{ .Values.param_db_mysql_port }}/ke?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    efak.username={{ .Values.param_db_username }}
+    efak.password={{ .Values.param_db_password }}
