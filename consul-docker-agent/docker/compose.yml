@@ -1,0 +1,12 @@
+
+services:
+  consul-docker-agent:
+    image: "registry.czy21.com/library/consul-docker-agent:latest"
+    container_name: consul-docker-agent
+    build:
+      context: /home/opsor/script-docker/ops/consul-docker-agent/build/output
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: python3 main.py --name  --consul-server http://192.168.20.2:8500 --traefik-server http://traefik:8080
+    # restart: always

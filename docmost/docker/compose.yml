@@ -1,0 +1,25 @@
+version: "3"
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.docmost.service: docmost
+  traefik.http.services.docmost.loadbalancer.server.port: 3000
+
+services:
+
+  docmost:
+    image: docmost/docmost:0.24.0
+    container_name: docmost
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    volumes:
+      - /volume5/storage/docker-data/docmost/data/:/app/data/storage
+    # https://docmost.com/docs/self-hosting/environment-variables
+    environment:
+      APP_URL: "http://localhost:3000"
+      APP_SECRET: xxxxxxx
+      DATABASE_URL: "postgresql://postgres:<secret_value>@pgsql:5432/docmost?sslmode=disable"
+      REDIS_URL: "redis://:<secret_value>@192.168.20.2:6379"
+    restart: always

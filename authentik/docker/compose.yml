@@ -1,0 +1,63 @@
+
+x-authentik-common: &authentik-common
+  image: authentik/server:2026.2.1
+  privileged: true
+  user: root
+  environment:
+    AUTHENTIK_POSTGRESQL__NAME: authentik
+    AUTHENTIK_POSTGRESQL__HOST: <db_host>
+    AUTHENTIK_POSTGRESQL__PORT: 5432
+    AUTHENTIK_POSTGRESQL__USER: postgres
+    AUTHENTIK_POSTGRESQL__PASSWORD: <secret_value>
+    AUTHENTIK_SECRET_KEY: <secret_value>
+  restart: always
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.authentik.service: authentik
+  traefik.http.services.authentik.loadbalancer.server.port: 9000
+
+services:
+  authentik-server:
+    <<: *authentik-common
+    container_name: authentik-server
+    labels:
+      <<: *traefik-label
+    ports:
+      - "9000:9000"
+    volumes:
+      - /volume5/storage/docker-data/authentik/conf/templates:/templates
+      - /volume5/storage/docker-data/authentik/data/:/data
+    command: server
+
+  authentik-worker:
+    <<: *authentik-common
+    container_name: authentik-worker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /volume5/storage/docker-data/authentik/conf/templates:/templates
+      - /volume5/storage/docker-data/authentik/data/:/data
+    command: worker
+
+  authentik-ldap:
+    image: authentik/ldap:2026.2.1
+    container_name: authentik-ldap
+    ports:
+        - 3389:3389
+        - 6636:6636
+    environment:
+      AUTHENTIK_HOST: http://authentik-server:9000
+      AUTHENTIK_INSECURE: "true"
+      AUTHENTIK_TOKEN: KHBLUruTxYoEofHCxZ48pZdikdoN0jr6n5TGii2wNt0GSpLbnPFFqH5xdfdx
+    restart: always
+
+  authentik-radius:
+    image: authentik/radius:2026.2.1
+    container_name: authentik-radius
+    ports:
+      - 1812:1812/udp
+    environment:
+      AUTHENTIK_HOST: http://authentik-server:9000
+      AUTHENTIK_INSECURE: "true"
+      AUTHENTIK_TOKEN: wePAbJ4ulUWXVjRCZJNE7EIjLWsaRU5U9kduF5eyT1ZuGXyCrJVsNrOIoNT6
+    restart: always

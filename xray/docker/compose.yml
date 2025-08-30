@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+
+  xray:
+    image: ghcr.io/xtls/xray-core
+    container_name: xray
+    privileged: true
+    user: root
+    network_mode: host
+    volumes:
+      - /volume1/storage/docker-data/xray/conf/:/usr/local/etc/xray/

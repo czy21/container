@@ -1,0 +1,40 @@
+argo-workflows:
+  fullnameOverride: argo-workflows
+  crds:
+    upgradeJob:
+      image:
+        repository: "registry.k8s.io/kubectl"
+  controller:
+    rbac:
+      accessAllSecrets: true
+      writeConfigMaps: true
+    image:
+      registry: "quay.io"
+    workflowNamespaces: []
+    synchronization:
+      mysql:
+        host: <db_host>
+        port: 3306
+        database: argo
+        userNameSecret:
+          name: argo-mysql-config
+          key: username
+        passwordSecret:
+          name: argo-mysql-config
+          key: password
+  server:
+    image:
+      registry: "quay.io"
+  executor:
+    image:
+      registry: "quay.io"
+  artifactRepository:
+    s3: 
+      endpoint: "minio.czy21.com"
+      bucket: "argo"
+      accessKeySecret:
+        name: argo-artifact-credentials
+        key: accessKey
+      secretKeySecret:
+        name: argo-artifact-credentials
+        key: secretKey
