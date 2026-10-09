@@ -1,0 +1,25 @@
+
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.homepage.service: homepage
+  traefik.http.services.homepage.loadbalancer.server.port: 3000
+
+services:
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v1.12.3
+    container_name: homepage
+    hostname: homepage
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    volumes:
+      - /volume1/storage/docker-data/homepage/conf/:/app/config/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PUID: 1001
+      PGID: 1001
+      TZ: Asia/Shanghai
+    restart: always

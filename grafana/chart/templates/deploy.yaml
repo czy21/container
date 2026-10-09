@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: conf
+        configMap:
+          name: {{ .Release.Name }}
+          items:
+          - key: grafana.ini
+            path: grafana.ini
+          - key: datasource.yaml
+            path: provisioning/datasources/datasource.yaml
+          - key: dashboard.yaml
+            path: provisioning/dashboards/dashboard.yaml
+      containers:
+      - name: {{ .Release.Name }}
+        image: grafana/grafana
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: conf
+          mountPath: /etc/grafana/
+        - name: data
+          mountPath: /var/lib/grafana/
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 256Gi
+
