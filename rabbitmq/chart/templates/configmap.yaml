@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+data:
+  definitions.json: |-
+    {
+      "users": [
+        {
+          "name": "admin",
+          "password_hash": "Vq0YWqM3ZwlrDAjnArH/PjSVRGI5s++NcLIijpvwC/RR/wJW",
+          "hashing_algorithm": "rabbit_password_hashing_sha256",
+          "tags": "administrator",
+          "limits": {}
+        }
+      ],
+      "vhosts": [
+        {
+          "name": "/"
+        }
+      ],
+      "permissions": [
+        {
+          "user": "admin",
+          "vhost": "/",
+          "configure": ".*",
+          "write": ".*",
+          "read": ".*"
+        }
+      ]
+    }
