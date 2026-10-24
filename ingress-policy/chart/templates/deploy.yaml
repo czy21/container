@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ .Release.Name }}
+  namespace: stable
+spec:
+  selector:
+    matchLabels:
+      app: sunny-gateway
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            remoteIpBlocks: ["192.168.0.0/16"]
+      to:
+        - operation:
+            paths: ["/doc.html"]
