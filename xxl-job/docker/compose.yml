@@ -1,0 +1,26 @@
+
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.xxl-job.service: xxl-job
+  traefik.http.services.xxl-job.loadbalancer.server.port: 8080
+
+services:
+
+  xxl-job:
+    image: registry.czy21.com/library/xxl-job-admin:master # xuxueli/xxl-job-admin:3.5.0
+    container_name: xxl-job
+    labels:
+      <<: *traefik-label
+    privileged: true
+    expose:
+      - "8080"
+    user: root
+    volumes:
+      - /volume1/storage/docker-data/xxl-job/log/:/data/applogs
+    environment:
+      JAVA_OPTS: >-
+        -Dspring.datasource.url=jdbc:mysql://db.czy21.com:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        -Dspring.datasource.username=admin
+        -Dspring.datasource.password=<secret_value>
+    restart: always

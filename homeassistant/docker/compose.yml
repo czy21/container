@@ -1,0 +1,10 @@
+services:
+  homeassistant:
+    image: homeassistant/home-assistant:2026.10.1
+    container_name: homeassistant
+    privileged: true
+    network_mode: host
+    user: root
+    volumes:
+      - /volume1/storage/docker-data/homeassistant/conf/:/config/
+    restart: always

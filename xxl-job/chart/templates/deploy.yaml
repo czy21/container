@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-xxl-job
+      containers:
+      - name: {{ .Release.Name }}
+        image: xuxueli/xxl-job-admin:2.4.1
+        ports:
+          - containerPort: 8080
+        env:
+        - name: PARAMS
+          value: |
+            PARAMS: "
+              --spring.datasource.url=jdbc:mysql://{{ .Values.param_db_mysql_host }}:{{ .Values.param_db_mysql_port }}/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+              --spring.datasource.username={{ .Values.param_db_mysql_username }}
+              --spring.datasource.password={{ .Values.param_db_mysql_password }}
+              --server.servlet.context-path=/
+            "
+        volumeMounts:
+          - name: data
+            mountPath: /data/applogs/
+            subPath: logs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-xxl-job
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 256Gi

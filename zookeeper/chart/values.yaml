@@ -1,0 +1,5 @@
+zookeeper:
+  image:
+    registry: docker.io
+    repository: bitnami/zookeeper
+  replicaCount: 1

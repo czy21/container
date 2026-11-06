@@ -1,0 +1,8 @@
+apiVersion: v2
+name: nginx-gateway
+version: 0.1.0
+
+dependencies:
+  - name: nginx-gateway-fabric
+    version: 2.8.1
+    repository: "oci://ghcr.io/nginx/charts"

@@ -1,0 +1,10 @@
+nginx-gateway-fabric:
+  nginxGateway:
+    name: nginx-gateway
+    image:
+      repository: ghcr.io/nginx/nginx-gateway-fabric
+  nginx:
+    image:
+      repository: ghcr.io/nginx/nginx-gateway-fabric/nginx
+    kind: daemonSet
+    service:
