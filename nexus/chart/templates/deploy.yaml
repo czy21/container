@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: sonatype/nexus3
+        resources:
+          limits:
+            memory: 2Gi
+        ports:
+          - name: nexus
+            containerPort: 8081
+          - name: registry-hoste
+            containerPort: 5000
+          - name: registry-proxy
+            containerPort: 5005
+        env:
+        - name: INSTALL4J_ADD_VM_PARAMS
+          value: -Xms500M -Xmx500M -XX:MaxDirectMemorySize=2g
+        volumeMounts:
+        - name: data
+          mountPath: /nexus-data/
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 256Gi
+

@@ -1,0 +1,9 @@
+http:
+  routers:
+    traefik:
+      rule: Host(`traefik-.czy21.com`)
+      service: traefik@docker
+  middlewares:
+    basic-auth:
+      basicAuth:
+        usersFile: "/etc/traefik/conf.d/basic-auth.txt"

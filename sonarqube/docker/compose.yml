@@ -1,0 +1,36 @@
+
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.sonarqube.service: sonarqube
+  traefik.http.services.sonarqube.loadbalancer.server.port: 9000
+
+services:
+
+  sonarqube:
+    image: sonarqube:25.8.0.112029-community
+    container_name: sonarqube
+    labels:
+      <<: *traefik-label
+    expose:
+      - "9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data/
+      - sonarqube-extensions:/opt/sonarqube/extensions/
+      - sonarqube-logs:/opt/sonarqube/logs/
+      - sonarqube-temp:/opt/sonarqube/temp/
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db.czy21.com:5432/sonarqube
+      SONAR_JDBC_USERNAME: "postgres"
+      SONAR_JDBC_PASSWORD: "<secret_value>"
+    restart: always
+
+volumes:
+  sonarqube-data:
+    name: sonarqube-data
+  sonarqube-extensions:
+    name: sonarqube-extensions
+  sonarqube-logs:
+    name: sonarqube-logs
+  sonarqube-temp:
+    name: sonarqube-temp

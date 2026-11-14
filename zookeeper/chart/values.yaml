@@ -1,0 +1,4 @@
+zookeeper:
+  image:
+    repository: bitnami/zookeeper
+  replicaCount: 1

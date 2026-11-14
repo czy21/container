@@ -1,0 +1,28 @@
+argo-workflows:
+  fullnameOverride: argo-workflows
+  controller:
+    rbac:
+      accessAllSecrets: true
+      writeConfigMaps: true
+    workflowNamespaces: []
+    synchronization:
+      mysql:
+        host: db.czy21.com
+        port: 3306
+        database: argo
+        userNameSecret:
+          name: argo-mysql-config
+          key: username
+        passwordSecret:
+          name: argo-mysql-config
+          key: password
+  artifactRepository:
+    s3: 
+      endpoint: "oss.czy21.com"
+      bucket: "argo"
+      accessKeySecret:
+        name: argo-artifact-credentials
+        key: accessKey
+      secretKeySecret:
+        name: argo-artifact-credentials
+        key: secretKey
