@@ -1,0 +1,26 @@
+
+
+x-traefik-label: &traefik-label
+  traefik.enable: true
+  traefik.http.routers.gradle-build-cache.service: gradle-build-cache
+  traefik.http.services.gradle-build-cache.loadbalancer.server.port: 5071
+
+services:
+
+  gradle-build-cache:
+    image: gradle/build-cache-node:21.2
+    pull_policy: always
+    container_name: gradle-build-cache
+    hostname: gradle-build-cache
+    labels:
+      <<: *traefik-label
+    privileged: true
+    user: root
+    expose:
+      - "5071"
+      - "6011"
+    ports:
+      - 6011:6011
+    volumes:
+      - /volume1/storage/docker-data/gradle/data/:/data/
+    restart: always

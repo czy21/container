@@ -1,0 +1,4 @@
+param_beszel_version: 0.21.1
+param_beszel_key: <secret_value>
+param_beszel_token: <secret_value>
+param_beszel_url: https://beszel.czy21.com

@@ -1,0 +1,20 @@
+istiod:
+  pilot:
+    env:
+      PILOT_HTTP10: true
+  # meshConfig:
+  #   defaultConfig:
+  #     gatewayTopology:
+  #       numTrustedProxies: 2
+component:
+  jaeger: false
+  kiali: true
+
+kiali-server:
+  auth:
+    strategy: anonymous
+  external_services:
+    prometheus:
+      url: http://prometheus.ops.svc:9090
+    grafana:
+      enable: false

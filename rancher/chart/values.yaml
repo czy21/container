@@ -1,0 +1,8 @@
+rancher:
+  bootstrapPassword: <secret_value>
+  ingress:
+    enabled: false
+  tls: external
+  replicas: 1
+  debug: false
+  agentTLSMode: system-store

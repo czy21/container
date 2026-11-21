@@ -1,0 +1,39 @@
+velero:
+  labels: 
+    sidecar.istio.io/inject: "false"
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.14.4
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+  credentials:
+    secretContents:
+      cloud: |
+        [default]
+        aws_access_key_id=<secret_value>
+        aws_secret_access_key=<secret_value>
+  configuration:
+    backupStorageLocation:
+      - name: default
+        provider: aws
+        bucket: velero
+        prefix: 
+        config:
+          region: us-east-1
+          s3Url: https://s3.czy21.com
+          s3ForcePathStyle: true
+  snapshotsEnabled: false
+  upgradeCRDs: false
+  cleanUpCRDs: false
+  schedules:
+    daily:
+      disabled: false
+      schedule: 0 12 * * *
+      template:
+        ttl: 168h
+        storageLocation: default
+        labelSelector:
+          matchLabels:
+            velero.io/backup: "true"

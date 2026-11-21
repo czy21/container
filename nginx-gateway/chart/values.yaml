@@ -1,0 +1,3 @@
+nginx-gateway-fabric:
+  nginxGateway:
+    name: nginx-gateway

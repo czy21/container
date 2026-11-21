@@ -1,0 +1,9 @@
+apiVersion: v2
+name: nacos
+version: 0.1.0
+
+
+dependencies:
+  - name: java-template
+    version: 0.1.0
+    repository: file:///home/runner/work/script/script/server/chart/ops/nacos/../../app/java
